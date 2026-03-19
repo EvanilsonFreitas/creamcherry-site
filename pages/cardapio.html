@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápio — CreamCherry Sobremesas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <style>
+    .page-hero {
+      background: var(--red);
+      margin-top: calc(-1 * var(--header-h));
+      padding-top: calc(var(--header-h) + 3.5rem);
+      padding-bottom: 7rem;
+      padding-left: 0;
+      padding-right: 0;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .page-hero::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size:28px 28px; }
+    .page-hero__content { position:relative; z-index:2; }
+    .page-hero h1 { font-family:var(--font-display); font-size:clamp(2.4rem,5vw,3.8rem); font-weight:900; color:white; margin:.4rem 0; line-height:1.15; }
+    .page-hero h1 em { font-style:italic; color:#FFD0D8; }
+    .page-hero p { color:rgba(255,255,255,0.82); font-size:1rem; max-width:520px; margin:.75rem auto 0; line-height:1.7; }
+    .page-hero__wave { position:absolute; bottom:-1px; left:0; right:0; line-height:0; }
+    .page-hero__wave svg { width:100%; height:60px; display:block; }
+
+    /* Cardápio layout */
+    .cardapio-page { padding:var(--space-lg) 0 var(--space-2xl); background:var(--gray-50); min-height:60vh; }
+
+    /* Toolbar */
+    .cardapio-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .search-bar {
+      position: relative;
+      flex: 1;
+      max-width: 360px;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: .75rem 1rem .75rem 2.8rem;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--gray-200);
+      font-size: .9rem;
+      background: white;
+      outline: none;
+      transition: border-color var(--dur-fast);
+      font-family: var(--font-body);
+    }
+    .search-bar input:focus { border-color: var(--red); }
+    .search-bar i { position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:var(--gray-400); font-size:.9rem; }
+
+    /* Category tabs */
+    .cat-tabs {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+    .cat-tab {
+      padding: .48rem 1.1rem;
+      border-radius: var(--radius-full);
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      background: white;
+      border: 1.5px solid var(--gray-200);
+      cursor: pointer;
+      transition: all var(--dur-fast);
+    }
+    .cat-tab:hover { color:var(--red); border-color:rgba(200,16,46,.25); background:var(--red-pale); }
+    .cat-tab.active { background:var(--red); color:white; border-color:var(--red); box-shadow:0 4px 12px rgba(200,16,46,.25); }
+
+    /* Results info */
+    .results-info { font-size:.82rem; color:var(--gray-400); margin-bottom:1.5rem; }
+    .results-info strong { color:var(--gray-700); }
+
+    /* Product grid */
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .prod-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--gray-100);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--dur-base) var(--ease-out);
+      cursor: pointer;
+    }
+    .prod-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.09);
+      border-color: rgba(200,16,46,.18);
+    }
+
+    .prod-card__thumb {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      transition: transform var(--dur-base) var(--ease-bounce);
+      position: relative;
+      overflow: hidden;
+    }
+    /* ↓ swap with real product image when available */
+    .prod-card__thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      position: absolute; inset: 0;
+    }
+    .prod-card:hover .prod-card__thumb { transform: scale(1.04); }
+
+    .prod-card__body { padding:.9rem 1.1rem 1.1rem; flex:1; display:flex; flex-direction:column; gap:.35rem; }
+    .prod-card__cat  { font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--red); }
+    .prod-card__cat.c-vegano  { color:#2D8A4E; }
+    .prod-card__cat.c-gelatto { color:#1565C0; }
+    .prod-card__name { font-family:var(--font-display); font-size:1.05rem; font-weight:900; color:var(--gray-800); }
+    .prod-card__desc { font-size:.8rem; color:var(--gray-500); line-height:1.5; flex:1; }
+
+    .prod-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: .6rem;
+      padding-top: .7rem;
+      border-top: 1px solid var(--gray-100);
+    }
+
+    .prod-card__actions { display:flex; gap:.4rem; }
+    .btn-saiba {
+      padding: .38rem .85rem;
+      border-radius: var(--radius-full);
+      font-size: .76rem;
+      font-weight: 700;
+      border: 1.5px solid var(--red);
+      color: var(--red);
+      background: transparent;
+      cursor: pointer;
+      transition: all var(--dur-fast);
+    }
+    .btn-saiba:hover { background:var(--red); color:white; }
+    .btn-add {
+      width:32px; height:32px;
+      border-radius:50%;
+      background:var(--red);
+      color:white;
+      border:none;
+      font-size:1.1rem;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer;
+      transition:all var(--dur-fast) var(--ease-bounce);
+    }
+    .btn-add:hover { background:var(--red-dark); transform:scale(1.15); }
+
+    /* Empty state */
+    .empty-state {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--gray-400);
+    }
+    .empty-state i { font-size:3rem; margin-bottom:1rem; display:block; }
+
+    /* ════════════════════════════════════════
+       PRODUCT DETAIL MODAL
+    ════════════════════════════════════════ */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 400;  /* below mobile-menu (9999) */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--dur-base) var(--ease-out);
+    }
+    .modal-backdrop.open { opacity:1; pointer-events:all; }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius-xl);
+      max-width: 640px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(24px) scale(.97);
+      transition: all var(--dur-base) var(--ease-out);
+    }
+    .modal-backdrop.open .modal { transform:translateY(0) scale(1); }
+
+    .modal__header {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      position: relative;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      overflow: hidden;
+    }
+    .modal__header img {
+      width:100%; height:100%; object-fit:cover;
+      position:absolute; inset:0;
+    }
+    .modal__close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.35);
+      color: white;
+      border: none;
+      font-size: 1rem;
+      display: flex; align-items:center; justify-content:center;
+      cursor: pointer;
+      transition: background var(--dur-fast);
+      z-index: 2;
+    }
+    .modal__close:hover { background:rgba(0,0,0,.6); }
+
+    .modal__body { padding: 2rem; }
+    .modal__cat  { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--red); margin-bottom:.3rem; }
+    .modal__name { font-family:var(--font-display); font-size:1.8rem; font-weight:900; color:var(--gray-800); margin-bottom:.5rem; }
+    .modal__desc { font-size:.95rem; color:var(--gray-600); line-height:1.75; margin-bottom:1.5rem; }
+
+    .modal__info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal__info-item {
+      background: var(--gray-50);
+      border-radius: var(--radius-md);
+      padding: .85rem 1rem;
+    }
+    .modal__info-item label { font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gray-400); display:block; margin-bottom:.25rem; }
+    .modal__info-item span  { font-size:.9rem; font-weight:600; color:var(--gray-800); }
+
+    /* Nutrition table */
+    .modal__section-title {
+      font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--gray-600); margin:1.5rem 0 .75rem;
+      padding-bottom:.5rem; border-bottom:1px solid var(--gray-100);
+    }
+    .nutrition-table { width:100%; border-collapse:collapse; font-size:.85rem; }
+    .nutrition-table th { text-align:left; font-weight:700; color:var(--gray-700); padding:.5rem .75rem; background:var(--gray-50); }
+    .nutrition-table td { padding:.45rem .75rem; border-bottom:1px solid var(--gray-100); color:var(--gray-700); }
+    .nutrition-table tr:last-child td { border-bottom:none; }
+
+    /* Ingredients tags */
+    .ingredients-list { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .ing-tag { padding:.3rem .75rem; border-radius:var(--radius-full); font-size:.78rem; font-weight:600; background:var(--gray-100); color:var(--gray-700); }
+    .ing-tag.allergen { background:#FFF8E1; color:#8D6508; border:1px solid #FFD740; }
+
+    /* Allergen disclaimer */
+    .allergen-note {
+      font-size:.78rem; color:var(--gray-500); margin-top:1rem; line-height:1.6;
+      padding:.75rem 1rem; background:var(--gray-50); border-radius:var(--radius-md);
+    }
+
+    /* Modal footer */
+    .modal__footer {
+      padding: 1.25rem 2rem;
+      border-top: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .modal__price { font-family:var(--font-display); font-size:1.6rem; font-weight:900; color:var(--red); }
+
+    @media(max-width:600px){
+      .cardapio-toolbar { flex-direction:column; align-items:stretch; }
+      .search-bar { max-width:100%; }
+      .modal__info-grid { grid-template-columns:1fr; }
+      .modal__footer { flex-direction:column; }
+      .modal__footer .btn { width:100%; justify-content:center; }
+    }
+  </style>
+  <!-- ═══ FAVICON ═══ -->
+  <link rel="icon"             type="image/x-icon"    href="../images/favicon.ico">
+  <link rel="icon"             type="image/png" sizes="32x32"  href="../images/favicon-32.png">
+  <link rel="icon"             type="image/png" sizes="16x16"  href="../images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180"                 href="../images/favicon-180.png">
+  <meta name="theme-color" content="#C8102E">
+</head>
+<body>
+
+  <div class="announcement-bar">
+    <div class="announcement-track">
+      <span>🍒 Frete grátis acima de R$80 &nbsp;·&nbsp; +80 sabores artesanais &nbsp;·&nbsp; Gelattos feitos todo dia &nbsp;·&nbsp; 🍒 Frete grátis acima de R$80 &nbsp;·&nbsp; +80 sabores artesanais &nbsp;·&nbsp; Gelattos feitos todo dia</span>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__logo">
+        <img src="../images/logos/logo-branco-transparent.png"  alt="CreamCherry" class="logo-white">
+        <img src="../images/logos/logo-original-transparent.png" alt="CreamCherry" class="logo-color">
+      </a>
+      <nav class="header__nav">
+        <a href="../index.html"    class="nav__link">Home</a>
+        <a href="sobre.html"       class="nav__link">Sobre nós</a>
+        <a href="cardapio.html"    class="nav__link active">Cardápio</a>
+        <a href="atacado.html"     class="nav__link">Atacado</a>
+        <a href="franquias.html"   class="nav__link">Franquias</a>
+        <a href="suporte.html"     class="nav__link">Suporte</a>
+      </nav>
+      <div class="header__actions">
+        <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" class="btn btn--red">Pedir Agora</a>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+    
+  </header>
+
+  <!-- Mobile menu — OUTSIDE header to avoid stacking context trap -->
+  <div class="mobile-menu" id="mobileMenu">
+      <button class="mobile-menu__close" id="mobileClose"><i class="fa-solid fa-xmark"></i></button>
+      <div class="mobile-menu__logo"><img src="../images/logos/logo-original-transparent.png" alt="CreamCherry" style="height:44px;width:auto;"></div>
+      <nav class="mobile-menu__nav">
+        <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="sobre.html"><i class="fa-solid fa-circle-info"></i> Sobre nós</a>
+        <a href="cardapio.html"><i class="fa-solid fa-ice-cream"></i> Cardápio</a>
+        <a href="atacado.html"><i class="fa-solid fa-box-open"></i> Atacado</a>
+        <a href="franquias.html"><i class="fa-solid fa-handshake"></i> Franquias</a>
+        <a href="suporte.html"><i class="fa-solid fa-headset"></i> Suporte</a>
+      </nav>
+      <a href="https://wa.me/5511989582586" target="_blank" class="btn btn--red btn--lg" style="margin-top:2rem;width:100%;justify-content:center;">Pedir Agora</a>
+      <div class="mobile-menu__social">
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+    </div>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero__content">
+        <span class="eyebrow" style="color:rgba(255,255,255,0.75)">Nosso Cardápio</span>
+        <h1>Sabores que <em>apaixonam</em></h1>
+        <p>+80 sabores artesanais. Clique em "Saiba mais" para ver ingredientes, tabela nutricional e muito mais.</p>
+      </div>
+      <div class="page-hero__wave">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#f9f9f9"/></svg>
+      </div>
+    </section>
+
+    <section class="cardapio-page">
+      <div class="container">
+        <div class="cardapio-toolbar">
+          <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Buscar sabor... ex: chocolate, morango" oninput="applyFilters()">
+          </div>
+          <div class="cat-tabs" id="catTabs">
+            <button class="cat-tab active" data-cat="todos">Todos</button>
+            <button class="cat-tab" data-cat="tradicionais">Tradicionais</button>
+            <button class="cat-tab" data-cat="especiais">Especiais</button>
+            <button class="cat-tab" data-cat="veganos">Veganos</button>
+            <button class="cat-tab" data-cat="gelattos">Gelattos</button>
+          </div>
+        </div>
+
+        <p class="results-info" id="resultsInfo"></p>
+        <div class="prod-grid" id="prodGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Product Detail Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" onclick="closeModal(event)">
+    <div class="modal" id="modal">
+      <div class="modal__header" id="modalHeader">
+        <button class="modal__close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal__body">
+        <div class="modal__cat"  id="modalCat"></div>
+        <div class="modal__name" id="modalName"></div>
+        <div class="modal__desc" id="modalDesc"></div>
+        <div class="modal__info-grid" id="modalInfoGrid"></div>
+        <div class="modal__section-title">Ingredientes principais</div>
+        <div class="ingredients-list" id="modalIngredients"></div>
+        <p class="allergen-note" id="modalAllergenNote"></p>
+        <div class="modal__section-title">Informação Nutricional <span style="font-weight:400;letter-spacing:0;text-transform:none;font-size:.82rem;color:var(--gray-400)">(porção 100g)</span></div>
+        <table class="nutrition-table" id="modalNutrition">
+          <thead><tr><th>Nutriente</th><th>Qtd.</th><th>%VD</th></tr></thead>
+          <tbody id="modalNutritionBody"></tbody>
+        </table>
+      </div>
+      <div class="modal__footer" style="gap:1rem;flex-wrap:wrap;">
+        <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" class="btn btn--red btn--lg" style="flex:1;justify-content:center;min-width:200px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          Pedir pelo 99Food
+        </a>
+        <a href="https://wa.me/5511989582586?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20" id="modalWhatsapp" target="_blank" class="btn btn--outline" style="flex:1;justify-content:center;min-width:160px">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="footer__logo"><img src="../images/logos/logo-branco-transparent.png" alt="CreamCherry" style="height:46px;width:auto;"></div>
+        <p>Sorvetes e gelattos artesanais feitos com ingredientes selecionados. Desde 2018 adoçando momentos especiais.</p>
+        <div class="footer__social">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre nós</a></li>
+          <li><a href="sobre.html#historia">Nossa história</a></li>
+          <li><a href="sobre.html#sustentabilidade">Sustentabilidade</a></li>
+          <li><a href="#">Trabalhe conosco</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Produtos</h4>
+        <ul>
+          <li><a href="cardapio.html?cat=tradicionais">Tradicionais</a></li>
+          <li><a href="cardapio.html?cat=gelattos">Gelattos</a></li>
+          <li><a href="cardapio.html?cat=veganos">Veganos</a></li>
+          <li><a href="cardapio.html?cat=especiais">Especiais</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="suporte.html">Central de Ajuda</a></li>
+          <li><a href="suporte.html">Fale Conosco</a></li>
+          <li><a href="atacado.html">Encomendas Atacado</a></li>
+          <li><a href="#">Política de Entrega</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Seja um Parceiro</h4>
+        <ul>
+          <li><a href="franquias.html">Franquias</a></li>
+          <li><a href="#">Fornecedores</a></li>
+        </ul>
+        <div class="footer__apps">
+          <h4>Peça pelo app</h4>
+          <a href="#" class="app-badge"><i class="fa-brands fa-apple"></i> App Store</a>
+          <a href="#" class="app-badge"><i class="fa-brands fa-google-play"></i> Google Play</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__mid">
+      <div class="footer__payment">
+        <span>Pagamento:</span>
+        <div class="payment-icons">
+          <!-- Visa -->
+          <div class="payment-badge" title="Visa">
+            <svg viewBox="0 0 48 16" xmlns="http://www.w3.org/2000/svg">
+              <text x="0" y="13" font-family="Arial" font-weight="900" font-size="14" fill="#1A1F71">VISA</text>
+            </svg>
+          </div>
+          <!-- Mastercard -->
+          <div class="payment-badge" title="Mastercard" style="gap:3px;display:flex;align-items:center;padding:3px 5px">
+            <svg viewBox="0 0 38 24" width="38" height="24" xmlns="http://www.w3.org/2000/svg">
+              <rect width="38" height="24" rx="4" fill="white"/>
+              <circle cx="14" cy="12" r="8" fill="#EB001B"/>
+              <circle cx="24" cy="12" r="8" fill="#F79E1B"/>
+              <path d="M19 6.27a8 8 0 0 1 0 11.46A8 8 0 0 1 19 6.27z" fill="#FF5F00"/>
+            </svg>
+          </div>
+          <!-- Pix -->
+          <div class="payment-badge payment-badge--pix" title="Pix">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 8l10.6 10.6-10.6 10.6L21.4 18.6z" fill="white"/>
+              <path d="M32 34.8l10.6 10.6L32 56l-10.6-10.6z" fill="white"/>
+              <path d="M8 32l10.6-10.6 10.6 10.6-10.6 10.6z" fill="white"/>
+              <path d="M34.8 32l10.6-10.6L56 32l-10.6 10.6z" fill="white"/>
+            </svg>
+          </div>
+          <!-- Elo -->
+          <div class="payment-badge" title="Elo" style="background:#FFD000">
+            <svg viewBox="0 0 48 20" xmlns="http://www.w3.org/2000/svg">
+              <text x="2" y="15" font-family="Arial" font-weight="900" font-size="13" fill="#00A0E0">elo</text>
+            </svg>
+          </div>
+          <!-- AmEx -->
+          <div class="payment-badge" title="American Express" style="background:#007BC1">
+            <svg viewBox="0 0 52 16" xmlns="http://www.w3.org/2000/svg">
+              <text x="0" y="13" font-family="Arial" font-weight="700" font-size="9.5" fill="white" letter-spacing="0.5">AMEX</text>
+            </svg>
+          </div>
+          <!-- VR -->
+          <div class="payment-badge payment-badge--vr" title="VR Benefícios">
+            <svg viewBox="0 0 36 20" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="20" rx="3" fill="#EF7D00"/>
+              <text x="4" y="14" font-family="Arial" font-weight="900" font-size="11" fill="white">VR</text>
+            </svg>
+          </div>
+          <!-- Alelo -->
+          <div class="payment-badge payment-badge--alelo" title="Alelo">
+            <svg viewBox="0 0 48 20" xmlns="http://www.w3.org/2000/svg">
+              <rect width="48" height="20" rx="3" fill="#EC1C24"/>
+              <text x="4" y="14" font-family="Arial" font-weight="700" font-size="10" fill="white">alelo</text>
+            </svg>
+          </div>
+          <!-- Dinheiro -->
+          <div class="payment-badge payment-badge--dinheiro" title="Dinheiro">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="5" width="22" height="14" rx="2" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="1" y1="9" x2="5" y2="9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="19" y1="9" x2="23" y2="9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="1" y1="15" x2="5" y2="15" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="19" y1="15" x2="23" y2="15" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="footer__delivery-brands">
+        <span>Peça via:</span>
+        <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" class="del-brand" style="text-decoration:none">99Food</a>
+        <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" class="del-brand" style="text-decoration:none">WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© 2025 CreamCherry Sobremesas LTDA. Todos os direitos reservados.</p>
+      <div class="footer__legal"><a href="#">Termos</a><a href="#">Privacidade</a></div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." class="whatsapp-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+  <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/forms.js"></script>
+  <script>
+  /* ══════════════════════════════════════════
+     PRODUCT CATALOGUE DATA
+     ─────────────────────────────────────────
+     To add a real product photo, set:
+       photo: '../images/produtos/nome-do-sabor.jpg'
+     (leave as '' or undefined to use the emoji illustration)
+  ══════════════════════════════════════════ */
+  const CATALOGO = [
+    {
+      id:'baunilha', cat:'tradicionais', emoji:'🍦', name:'Baunilha Clássica',
+      desc:'A rainha dos sorvetes. Produzida com fava de baunilha Bourbon importada, creme de leite fresco e açúcar de cana. Textura aveludada e sabor limpo que agrada todos os paladares.',
+      price:'R$ 12,90', photo:'',
+      porcao:'120ml', calorias:'210 kcal',
+      alergenos:['leite','ovos'],
+      ingredientes:['leite integral','creme de leite','açúcar de cana','fava de baunilha Bourbon','gema de ovo'],
+      nutricao:[
+        ['Valor energético','210 kcal','11%'],['Carboidratos','24g','8%'],
+        ['Açúcares','21g','—'],['Proteínas','4g','5%'],
+        ['Gorduras totais','10g','14%'],['Gorduras saturadas','6g','27%'],
+        ['Sódio','65mg','3%'],
+      ]
+    },
+    {
+      id:'chocolate', cat:'tradicionais', emoji:'🍫', name:'Chocolate Belga',
+      desc:'Cacau 70% importado da Bélgica, processado a frio para preservar os aromas. Intenso, encorpado e incrivelmente cremoso. Para os verdadeiros amantes de chocolate.',
+      price:'R$ 14,90', photo:'',
+      porcao:'120ml', calorias:'240 kcal',
+      alergenos:['leite','soja'],
+      ingredientes:['leite integral','creme de leite','cacau 70% Belga','açúcar de cana','manteiga de cacau','lecitina de soja'],
+      nutricao:[
+        ['Valor energético','240 kcal','12%'],['Carboidratos','26g','9%'],
+        ['Açúcares','22g','—'],['Proteínas','5g','7%'],
+        ['Gorduras totais','13g','18%'],['Gorduras saturadas','8g','36%'],
+        ['Sódio','70mg','3%'],
+      ]
+    },
+    {
+      id:'morango', cat:'tradicionais', emoji:'🍓', name:'Morango Fresco',
+      desc:'Morangos selecionados da Região Serrana de SP, colhidos na estação. Cor vibrante, aroma natural e sabor equilibrado entre o doce e o ácido. Sem corantes artificiais.',
+      price:'R$ 13,90', photo:'',
+      porcao:'120ml', calorias:'180 kcal',
+      alergenos:['leite'],
+      ingredientes:['leite integral','morango fresco','açúcar de cana','creme de leite','pectina natural'],
+      nutricao:[
+        ['Valor energético','180 kcal','9%'],['Carboidratos','22g','7%'],
+        ['Açúcares','18g','—'],['Proteínas','3g','4%'],
+        ['Gorduras totais','8g','11%'],['Gorduras saturadas','5g','23%'],
+        ['Sódio','50mg','2%'],
+      ]
+    },
+    {
+      id:'amendoim', cat:'tradicionais', emoji:'🥜', name:'Crocante de Amendoim',
+      desc:'Pasta de amendoim artesanal misturada ao creme base, com pedaços de amendoim tostado ao mel. Textura cremosa e crocante ao mesmo tempo — viciante.',
+      price:'R$ 15,90', photo:'',
+      porcao:'120ml', calorias:'280 kcal',
+      alergenos:['leite','amendoim'],
+      ingredientes:['leite integral','pasta de amendoim','amendoim tostado ao mel','creme de leite','açúcar de cana','mel'],
+      nutricao:[
+        ['Valor energético','280 kcal','14%'],['Carboidratos','20g','7%'],
+        ['Gorduras totais','18g','25%'],['Proteínas','8g','11%'],
+        ['Sódio','80mg','3%'],
+      ]
+    },
+    {
+      id:'limao', cat:'tradicionais', emoji:'🍋', name:'Limão Siciliano',
+      desc:'Suco e raspas de limão siciliano orgânico diretamente no creme. Refrescante, levemente ácido e com aroma cítrico marcante. Perfeito para dias quentes.',
+      price:'R$ 13,90', photo:'',
+      porcao:'120ml', calorias:'175 kcal',
+      alergenos:['leite'],
+      ingredientes:['leite integral','suco de limão siciliano','raspas de limão siciliano','açúcar de cana','creme de leite'],
+      nutricao:[
+        ['Valor energético','175 kcal','9%'],['Carboidratos','24g','8%'],
+        ['Gorduras totais','7g','10%'],['Proteínas','3g','4%'],
+        ['Sódio','45mg','2%'],
+      ]
+    },
+    {
+      id:'cherry_cc', cat:'especiais', emoji:'🍒', name:'Cherry Cheesecake',
+      desc:'Cream cheese Philadelphia, calda de cereja ácida e base de biscoito Oreo triturado. Uma sobremesa completa em cada copo. Textura densa e sabor equilibrado.',
+      price:'R$ 18,90', photo:'',
+      porcao:'120ml', calorias:'310 kcal',
+      alergenos:['leite','trigo','ovos'],
+      ingredientes:['cream cheese','creme de leite','calda de cereja','biscoito recheado','açúcar','leite condensado','baunilha'],
+      nutricao:[
+        ['Valor energético','310 kcal','16%'],['Carboidratos','30g','10%'],
+        ['Açúcares','25g','—'],['Proteínas','6g','8%'],
+        ['Gorduras totais','18g','25%'],['Sódio','140mg','6%'],
+      ]
+    },
+    {
+      id:'pistache', cat:'especiais', emoji:'🫚', name:'Pistache Italiano',
+      desc:'Pasta de pistache siciliano importada da Bronte (Sicília) — a capital mundial do pistache. Sabor intenso, cor natural verde-esmeralda. Sem corantes.',
+      price:'R$ 22,90', photo:'',
+      porcao:'120ml', calorias:'290 kcal',
+      alergenos:['leite','pistache'],
+      ingredientes:['leite integral','pasta de pistache siciliano (Bronte)','creme de leite','açúcar de cana','pistache granulado'],
+      nutricao:[
+        ['Valor energético','290 kcal','15%'],['Carboidratos','18g','6%'],
+        ['Gorduras totais','20g','28%'],['Proteínas','7g','9%'],
+        ['Sódio','60mg','3%'],
+      ]
+    },
+    {
+      id:'nutella', cat:'especiais', emoji:'🍫', name:'Nutella Trufado',
+      desc:'Creme de avelã Ferrero misturado ao creme base com pedaços de trufa de chocolate belga 70%. Duas camadas de prazer — cremoso e crocante ao mesmo tempo.',
+      price:'R$ 19,90', photo:'',
+      porcao:'120ml', calorias:'320 kcal',
+      alergenos:['leite','avelã','soja','trigo'],
+      ingredientes:['creme de leite','Nutella Ferrero','trufa de chocolate 70%','leite integral','avelã tostada','açúcar'],
+      nutricao:[
+        ['Valor energético','320 kcal','16%'],['Carboidratos','28g','9%'],
+        ['Gorduras totais','20g','28%'],['Proteínas','5g','7%'],
+        ['Sódio','90mg','4%'],
+      ]
+    },
+    {
+      id:'tiramisu', cat:'especiais', emoji:'☕', name:'Tiramisù',
+      desc:'Receita inspirada no clássico italiano: mascarpone fresco, espresso duplo, cacau em pó e biscoito savoiardi. Sofisticado, cremoso e com toque de amargor.',
+      price:'R$ 21,90', photo:'',
+      porcao:'120ml', calorias:'300 kcal',
+      alergenos:['leite','ovos','trigo','glúten'],
+      ingredientes:['mascarpone','espresso','biscoito savoiardi','gema de ovo','açúcar mascavo','cacau em pó','creme de leite'],
+      nutricao:[
+        ['Valor energético','300 kcal','15%'],['Carboidratos','22g','7%'],
+        ['Gorduras totais','19g','27%'],['Proteínas','6g','8%'],
+        ['Sódio','80mg','3%'],
+      ]
+    },
+    {
+      id:'coco_mara', cat:'veganos', emoji:'🥥', name:'Coco & Maracujá',
+      desc:'Base cremosa de leite de coco orgânico com polpa de maracujá fresco. Zero lactose, zero ovos, 100% vegano. Tropical, refrescante e surpreendentemente cremoso.',
+      price:'R$ 15,90', photo:'',
+      porcao:'120ml', calorias:'190 kcal',
+      alergenos:[],
+      ingredientes:['leite de coco orgânico','polpa de maracujá fresco','açúcar de cana','óleo de coco','amido de arroz'],
+      nutricao:[
+        ['Valor energético','190 kcal','10%'],['Carboidratos','20g','7%'],
+        ['Gorduras totais','12g','17%'],['Proteínas','2g','3%'],
+        ['Sódio','30mg','1%'],
+      ]
+    },
+    {
+      id:'acai', cat:'veganos', emoji:'🫐', name:'Açaí Power',
+      desc:'Açaí amazônico orgânico em base de banana congelada, finalizado com granola artesanal e calda de mel vegano. Rico em antioxidantes e energia natural.',
+      price:'R$ 16,90', photo:'',
+      porcao:'120ml', calorias:'220 kcal',
+      alergenos:['aveia'],
+      ingredientes:['açaí amazônico orgânico','banana','granola artesanal (aveia, mel vegano, castanha)','mel vegano','coco ralado'],
+      nutricao:[
+        ['Valor energético','220 kcal','11%'],['Carboidratos','28g','9%'],
+        ['Gorduras totais','9g','13%'],['Proteínas','4g','5%'],
+        ['Sódio','20mg','1%'],
+      ]
+    },
+    {
+      id:'matcha', cat:'veganos', emoji:'🌿', name:'Matcha & Limão',
+      desc:'Chá matcha cerimonial japonês grau A com raspas de limão siciliano em base de leite de amêndoa. Sabor complexo, levemente amargo e refrescante. Sem lactose.',
+      price:'R$ 17,90', photo:'',
+      porcao:'120ml', calorias:'185 kcal',
+      alergenos:['amêndoa'],
+      ingredientes:['leite de amêndoa','matcha cerimonial grau A','raspas de limão siciliano','agave','amido de arroz'],
+      nutricao:[
+        ['Valor energético','185 kcal','9%'],['Carboidratos','19g','6%'],
+        ['Gorduras totais','10g','14%'],['Proteínas','3g','4%'],
+        ['Sódio','25mg','1%'],
+      ]
+    },
+    {
+      id:'gel_cereja', cat:'gelattos', emoji:'🍒', name:'Gelatto Cereja',
+      desc:'Gelatto alla ciliegia no estilo siciliano. Cerejas ácidas do Mediterrâneo, técnica de churning lento para máxima cremosidade e menos ar. Cor intensa, sabor profundo.',
+      price:'R$ 16,90', photo:'',
+      porcao:'100ml', calorias:'200 kcal',
+      alergenos:['leite'],
+      ingredientes:['leite integral','cereja mediterrânea','açúcar de cana','creme de leite','leite em pó'],
+      nutricao:[
+        ['Valor energético','200 kcal','10%'],['Carboidratos','25g','8%'],
+        ['Gorduras totais','9g','13%'],['Proteínas','4g','5%'],
+        ['Sódio','55mg','2%'],
+      ]
+    },
+    {
+      id:'gel_pist', cat:'gelattos', emoji:'🫚', name:'Gelatto Pistacchio',
+      desc:'O rey dos gelattos. Pasta de pistache IGP da Sicília (Bronte), textura densa e sabor que remete diretamente às gelaterias de Palermo. Produção limitada.',
+      price:'R$ 24,90', photo:'',
+      porcao:'100ml', calorias:'270 kcal',
+      alergenos:['leite','pistache'],
+      ingredientes:['leite integral','pasta pistache IGP Bronte','creme de leite','açúcar de cana','pistache granulado'],
+      nutricao:[
+        ['Valor energético','270 kcal','14%'],['Carboidratos','16g','5%'],
+        ['Gorduras totais','18g','25%'],['Proteínas','7g','9%'],
+        ['Sódio','50mg','2%'],
+      ]
+    },
+    {
+      id:'gel_ciocco', cat:'gelattos', emoji:'🍫', name:'Gelatto Cioccolato Nero',
+      desc:'Chocolate negro 72% de origem única (Costa do Marfim) processado com técnica italiana de churning lento. Amargo e suave ao mesmo tempo — para gourmets de chocolate.',
+      price:'R$ 18,90', photo:'',
+      porcao:'100ml', calorias:'250 kcal',
+      alergenos:['leite','soja'],
+      ingredientes:['leite integral','cacau negro 72% Costa do Marfim','açúcar de cana','creme de leite','lecitina de soja'],
+      nutricao:[
+        ['Valor energético','250 kcal','13%'],['Carboidratos','20g','7%'],
+        ['Gorduras totais','15g','21%'],['Proteínas','5g','7%'],
+        ['Sódio','60mg','3%'],
+      ]
+    },
+    {
+      id:'fiordi', cat:'gelattos', emoji:'🍦', name:'Gelatto Fiordilatte',
+      desc:'O gelatto mais puro e honesto. Apenas leite fresco, creme e açúcar — sem baunilha, sem adicionais. Quem ama verdadeiramente sabe que o sabor do leite de qualidade é perfeito sozinho.',
+      price:'R$ 15,90', photo:'',
+      porcao:'100ml', calorias:'185 kcal',
+      alergenos:['leite'],
+      ingredientes:['leite integral fresco','creme de leite fresco','açúcar de cana','leite em pó'],
+      nutricao:[
+        ['Valor energético','185 kcal','9%'],['Carboidratos','17g','6%'],
+        ['Gorduras totais','11g','15%'],['Proteínas','4g','6%'],
+        ['Sódio','50mg','2%'],
+      ]
+    },
+  ];
+
+  const CAT_LABEL = {
+    tradicionais: 'Tradicional',
+    especiais:    'Especial',
+    veganos:      'Vegano',
+    gelattos:     'Gelatto',
+  };
+
+  const CAT_CSS = {
+    tradicionais: '',
+    especiais:    '',
+    veganos:      'c-vegano',
+    gelattos:     'c-gelatto',
+  };
+
+  const BG_CAT = {
+    tradicionais: 'linear-gradient(135deg,#FFF5E4,#FFE8C8)',
+    especiais:    'linear-gradient(135deg,#FFF0F2,#FFD0D8)',
+    veganos:      'linear-gradient(135deg,#F0FAF3,#C8F5D0)',
+    gelattos:     'linear-gradient(135deg,#EFF6FF,#BFDBFE)',
+  };
+
+  /* ── Render ── */
+  let currentCat = 'todos';
+
+  function applyFilters() {
+    const q   = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+    const cat = currentCat;
+    let list  = CATALOGO;
+    if (cat !== 'todos') list = list.filter(p => p.cat === cat);
+    if (q) list = list.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.desc.toLowerCase().includes(q) ||
+      (p.ingredientes || []).some(i => i.toLowerCase().includes(q))
+    );
+    renderGrid(list, q);
+  }
+
+  function renderGrid(list, q) {
+    const grid = document.getElementById('prodGrid');
+    const info = document.getElementById('resultsInfo');
+    info.innerHTML = `<strong>${list.length}</strong> produto${list.length !== 1 ? 's' : ''} encontrado${list.length !== 1 ? 's' : ''}`;
+
+    if (!list.length) {
+      grid.innerHTML = `<div class="empty-state"><i class="fa-solid fa-ice-cream"></i><p>Nenhum sabor encontrado para "<strong>${q}</strong>".<br>Tente outro termo.</p></div>`;
+      return;
+    }
+
+    grid.innerHTML = list.map(p => `
+      <div class="prod-card" onclick="openModal('${p.id}')">
+        <div class="prod-card__thumb" style="background:${BG_CAT[p.cat] || '#f5f5f5'}">
+          ${p.photo ? `<img src="${p.photo}" alt="${p.name}" loading="lazy">` : `<span style="font-size:3.5rem">${p.emoji}</span>`}
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-card__cat ${CAT_CSS[p.cat]}">${CAT_LABEL[p.cat]}</div>
+          <div class="prod-card__name">${p.name}</div>
+          <div class="prod-card__desc">${p.desc.substring(0,80)}…</div>
+          <div class="prod-card__footer">
+            <button class="btn-saiba" onclick="event.stopPropagation();openModal('${p.id}')">
+              <i class="fa-solid fa-circle-info"></i> Saiba mais
+            </button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ── Tabs ── */
+  document.querySelectorAll('.cat-tab').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentCat = this.dataset.cat;
+      document.getElementById('searchInput').value = '';
+      applyFilters();
+    });
+  });
+
+  /* ── URL param: ?cat=xxx ── */
+  const urlCat = new URLSearchParams(location.search).get('cat');
+  if (urlCat) {
+    const tab = document.querySelector(`.cat-tab[data-cat="${urlCat}"]`);
+    if (tab) { tab.click(); }
+  } else {
+    applyFilters();
+  }
+
+  /* ── Modal ── */
+  function openModal(id) {
+    const p = CATALOGO.find(x => x.id === id);
+    if (!p) return;
+
+    document.getElementById('modalHeader').style.background = BG_CAT[p.cat] || '#f5f5f5';
+    const headerInner = document.getElementById('modalHeader');
+    // Clear old emoji span if present
+    headerInner.querySelectorAll('span').forEach(el => el.remove());
+    headerInner.querySelectorAll('img:not(.modal__close img)').forEach(el => el.remove());
+    if (p.photo) {
+      const img = document.createElement('img');
+      img.src = p.photo; img.alt = p.name;
+      headerInner.insertBefore(img, headerInner.firstChild);
+    } else {
+      const sp = document.createElement('span');
+      sp.textContent = p.emoji;
+      sp.style.cssText = 'font-size:5rem;position:relative;z-index:1;';
+      headerInner.insertBefore(sp, headerInner.firstChild);
+    }
+
+    document.getElementById('modalCat').textContent    = CAT_LABEL[p.cat];
+    document.getElementById('modalCat').className      = 'modal__cat ' + (CAT_CSS[p.cat] || '');
+    document.getElementById('modalName').textContent   = p.name;
+    document.getElementById('modalDesc').textContent   = p.desc;
+    // price removed — catalogue is informational only
+
+    // Info grid
+    document.getElementById('modalInfoGrid').innerHTML = `
+      <div class="modal__info-item"><label>Porção</label><span>${p.porcao}</span></div>
+      <div class="modal__info-item"><label>Calorias</label><span>${p.calorias}</span></div>
+    `;
+
+    // Ingredients
+    document.getElementById('modalIngredients').innerHTML = (p.ingredientes || []).map(i =>
+      `<span class="ing-tag ${p.alergenos?.includes(i.toLowerCase().split(' ')[0]) ? 'allergen' : ''}">${i}</span>`
+    ).join('');
+
+    document.getElementById('modalAllergenNote').innerHTML = p.alergenos?.length
+      ? `<i class="fa-solid fa-triangle-exclamation" style="color:#FFB300;margin-right:.4rem"></i><strong>Alergênicos:</strong> ${p.alergenos.join(', ')}. Pode conter traços de outros alérgenos. Consulte nosso atendimento se tiver restrições alimentares.`
+      : '<i class="fa-solid fa-circle-check" style="color:#43A047;margin-right:.4rem"></i>Sem alérgenos declarados. Produzido em ambiente com outros alérgenos.';
+
+    // Nutrition
+    document.getElementById('modalNutritionBody').innerHTML = (p.nutricao || []).map(row =>
+      `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td></tr>`
+    ).join('');
+
+    // WhatsApp link
+    document.getElementById('modalWhatsapp').href =
+      `https://wa.me/5511989582586?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20${encodeURIComponent(p.name)}!`;
+
+    document.getElementById('modalBackdrop').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    // Close on: backdrop click, close button click, or no event (programmatic)
+    if (e) {
+      const backdrop = document.getElementById('modalBackdrop');
+      const isBackdrop = e.target === backdrop;
+      const isCloseBtn = e.target.closest('.modal__close');
+      if (!isBackdrop && !isCloseBtn) return;
+    }
+    document.getElementById('modalBackdrop').classList.remove('open');
+    document.body.style.overflow = '';
+    document.body.classList.remove('menu-open');
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.getElementById('modalBackdrop').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+  </script>
+  <!-- VLibras Acessibilidade -->
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>new window.VLibras.Widget("https://vlibras.gov.br/app");</script>
+</body>
+</html>

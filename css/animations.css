@@ -1,0 +1,115 @@
+/* ========================================
+   CREAM CHERRY — Animations & Transitions
+   ======================================== */
+
+/* ── Fade In on scroll ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── Slide in from left/right ── */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.reveal-left.visible,
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Scale in ── */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-bounce);
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Page load stagger for hero ── */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero__badge    { animation: heroFadeUp 0.6s var(--ease-out) 0.1s both; }
+.hero__title    { animation: heroFadeUp 0.6s var(--ease-out) 0.2s both; }
+.hero__desc     { animation: heroFadeUp 0.6s var(--ease-out) 0.35s both; }
+.hero__cta      { animation: heroFadeUp 0.6s var(--ease-out) 0.45s both; }
+.hero__stats    { animation: heroFadeUp 0.6s var(--ease-out) 0.55s both; }
+.hero__visual   { animation: heroFadeUp 0.8s var(--ease-out) 0.3s both; }
+
+/* ── Shimmer for loading states ── */
+@keyframes shimmer {
+  from { background-position: -400px 0; }
+  to   { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 50%, var(--gray-100) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Tab content transition ── */
+.flavors-grid {
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.flavors-grid.fade-out { opacity: 0; }
+.flavors-grid.fade-in  { opacity: 1; }
+
+/* ── Notification toast ── */
+.toast {
+  position: fixed;
+  bottom: 5rem;
+  right: 2rem;
+  z-index: 500;
+  background: var(--gray-800);
+  color: white;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  display: none;           /* hidden by default — JS shows it */
+  align-items: center;
+  gap: 0.6rem;
+  transform: translateX(120%);
+  transition: transform 0.4s var(--ease-out), opacity 0.4s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toast.show {
+  display: flex;
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: all;
+}
+.toast i { color: #4CAF70; }

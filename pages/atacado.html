@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encomendas no Atacado — CreamCherry Sobremesas</title>
+  <meta name="description" content="Solicite encomendas de sorvetes e gelattos no atacado. Atendemos exclusivamente São Paulo. CreamCherry Premium.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/animations.css">
+
+  <style>
+    /* ════════════════════════════════════════
+       PAGE HERO
+    ════════════════════════════════════════ */
+    .page-hero {
+      background: var(--red);
+      margin-top: calc(-1 * var(--header-h));
+      padding-top: calc(var(--header-h) + 3.5rem);
+      padding-bottom: 7rem;
+      padding-left: 0;
+      padding-right: 0;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .page-hero__content { position: relative; z-index: 2; }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900; color: white;
+      margin: .5rem 0; line-height: 1.15;
+    }
+    .page-hero h1 em { font-style: italic; color: #FFD0D8; }
+    .page-hero p {
+      color: rgba(255,255,255,0.82);
+      font-size: 1rem; max-width: 560px;
+      margin: 0 auto; line-height: 1.7;
+    }
+    .page-hero__wave { position: absolute; bottom: -1px; left: 0; right: 0; line-height: 0; }
+    .page-hero__wave svg { width: 100%; height: 60px; display: block; }
+
+    /* ════════════════════════════════════════
+       SP ALERT
+    ════════════════════════════════════════ */
+    .sp-alert {
+      background: #FFF8E1;
+      border: 2px solid #FFB300;
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.9rem;
+      color: #5D4037;
+      line-height: 1.55;
+    }
+    .sp-alert__icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: #FFB300;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      font-size: 1.1rem;
+    }
+    .sp-alert strong { color: #3E2723; display: block; margin-bottom: 0.2rem; }
+
+    /* ════════════════════════════════════════
+       LAYOUT
+    ════════════════════════════════════════ */
+    .atacado-page { padding: var(--space-xl) 0 var(--space-2xl); background: var(--gray-50); }
+
+    .atacado-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* ════════════════════════════════════════
+       INFO SIDEBAR
+    ════════════════════════════════════════ */
+    /* Sidebar — light gray tonal background, distinct from white form */
+    .atacado-info {
+      position: sticky;
+      top: 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: #EDEAE7;
+      border-radius: var(--radius-xl);
+      padding: 1.5rem;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      border: 1px solid #DDD9D4;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .atacado-info .info-card__title { color: var(--red); border-bottom-color: #E5E0DB; }
+    .atacado-info .info-item { border-bottom-color: #EEE9E4; }
+    .atacado-info .info-item strong { color: var(--gray-800); }
+    .atacado-info .info-item span   { color: var(--gray-600); }
+    .atacado-info .info-item__icon  { background: var(--red-pale); color: var(--red); }
+    .atacado-info .profile-badge    { background: #F7F4F1; border-color: #DDD9D4; color: var(--gray-700); }
+    .atacado-info .profile-badge:hover { background: var(--red-pale); border-color: rgba(200,16,46,.25); color: var(--red); }
+    .atacado-info .profile-badge__icon { background: var(--gray-200); color: var(--gray-600); }
+    .atacado-info p { color: var(--gray-600); }
+
+    .info-card__title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .info-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .info-item__icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: var(--red-pale);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--red);
+      font-size: 0.9rem;
+    }
+
+    .info-item strong { display: block; font-size: 0.84rem; font-weight: 700; color: var(--gray-800); }
+    .info-item span   { font-size: 0.79rem; color: var(--gray-600); line-height: 1.5; }
+
+    /* Profile types */
+    .profile-types { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .profile-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.55rem 0.85rem;
+      border-radius: var(--radius-md);
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      background: var(--gray-50);
+      border: 1.5px solid var(--gray-100);
+      transition: all var(--dur-base) var(--ease-out);
+    }
+
+    .profile-badge__icon {
+      width: 26px; height: 26px; flex-shrink: 0;
+      background: var(--gray-200);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray-600);
+      font-size: 0.75rem;
+    }
+
+    .profile-badge.selected,
+    .profile-badge:hover {
+      background: var(--red-pale);
+      border-color: rgba(200,16,46,0.25);
+      color: var(--red);
+    }
+    .profile-badge.selected .profile-badge__icon,
+    .profile-badge:hover .profile-badge__icon {
+      background: var(--red);
+      color: white;
+    }
+
+    /* ════════════════════════════════════════
+       FORM WRAPPER
+    ════════════════════════════════════════ */
+    .atacado-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      border: 1.5px solid var(--gray-100);
+      box-shadow: var(--shadow-card);
+    }
+
+    .atacado-form-wrap > h2 {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--gray-800);
+      margin-bottom: 0.4rem;
+    }
+
+    .atacado-form-wrap > p {
+      font-size: 0.88rem;
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+      line-height: 1.65;
+    }
+
+    /* Form steps */
+    .form-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1rem; }
+
+    .form-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 0.4rem;
+    }
+
+    .required { color: var(--red); }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.78rem 1rem;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      color: var(--gray-800);
+      outline: none;
+      background: var(--gray-50);
+      transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+      font-family: var(--font-body);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--red);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(200,16,46,0.07);
+    }
+
+    .form-group input.error  { border-color: #E53935; background: #FFF5F5; }
+    .form-group input.valid  { border-color: #43A047; }
+
+    .field-error {
+      display: none;
+      font-size: 0.75rem;
+      color: #E53935;
+      margin-top: 0.3rem;
+    }
+    .field-error.show { display: block; }
+
+    .input-readonly {
+      background: var(--gray-100) !important;
+      color: var(--gray-600) !important;
+      cursor: not-allowed;
+    }
+
+    /* CEP */
+    .cep-row { display: grid; grid-template-columns: 160px 1fr; gap: 1rem; }
+
+    .cep-loading {
+      display: none;
+      font-size: 0.78rem;
+      color: var(--red);
+      margin-top: 0.35rem;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .cep-loading.show { display: flex; }
+
+    /* ════════════════════════════════════════
+       PRODUCT CARD SELECTOR
+    ════════════════════════════════════════ */
+    .product-selector-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Each product row = card */
+    .product-card-row {
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--white);
+      transition: border-color var(--dur-base), box-shadow var(--dur-base);
+    }
+
+    .product-card-row.has-product {
+      border-color: rgba(200,16,46,0.2);
+      box-shadow: 0 2px 12px rgba(200,16,46,0.06);
+    }
+
+    /* Top part: preview + select */
+    .pcard-top {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 0;
+      min-height: 88px;
+    }
+
+    /* Visual preview thumbnail */
+    .pcard-thumb {
+      width: 88px;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-right: 1px solid var(--gray-100);
+      position: relative;
+      overflow: hidden;
+      transition: background var(--dur-base);
+    }
+
+    .pcard-thumb svg {
+      width: 52px;
+      height: 52px;
+      transition: transform var(--dur-base) var(--ease-out);
+    }
+
+    .product-card-row.has-product .pcard-thumb svg {
+      transform: scale(1.08);
+    }
+
+    .pcard-thumb-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-top: 4px;
+      text-align: center;
+      padding: 0 4px;
+    }
+
+    /* Category colour bands */
+    .pcard-thumb.cat-tradicional { background: #FFF5E4; }
+    .pcard-thumb.cat-especial    { background: #FFF0F2; }
+    .pcard-thumb.cat-vegano      { background: #F0FAF3; }
+    .pcard-thumb.cat-gelatto     { background: #EFF6FF; }
+
+    /* Right side of card top */
+    .pcard-info {
+      padding: 0.85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .pcard-select {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      font-size: 0.87rem;
+      color: var(--gray-800);
+      background: white;
+      outline: none;
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: border-color var(--dur-fast);
+    }
+    .pcard-select:focus { border-color: var(--red); }
+
+    .pcard-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .pcard-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.55rem;
+      border-radius: 4px;
+      background: var(--gray-100);
+      color: var(--gray-600);
+    }
+
+    .pcard-tag.cat-tradicional { background: #FFF5E4; color: #A0522D; }
+    .pcard-tag.cat-especial    { background: #FFF0F2; color: var(--red); }
+    .pcard-tag.cat-vegano      { background: #F0FAF3; color: #2D8A4E; }
+    .pcard-tag.cat-gelatto     { background: #EFF6FF; color: #1565C0; }
+
+    .pcard-desc {
+      font-size: 0.78rem;
+      color: var(--gray-500);
+      line-height: 1.4;
+    }
+
+    /* Bottom part: qty + remove */
+    .pcard-bottom {
+      padding: 0.65rem 1rem;
+      background: var(--gray-50);
+      border-top: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .qty-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gray-600);
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: auto;
+    }
+
+    .qty-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      color: var(--gray-700);
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all var(--dur-fast);
+      line-height: 1;
+    }
+    .qty-btn:hover { background: var(--red); color: white; border-color: var(--red); }
+
+    .qty-input {
+      width: 58px;
+      text-align: center;
+      padding: 0.38rem 0.4rem !important;
+      font-size: 0.9rem !important;
+      font-weight: 600 !important;
+      border-radius: var(--radius-sm) !important;
+      margin-bottom: 0 !important;
+    }
+
+    .remove-card-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1.5px solid var(--gray-200);
+      color: var(--gray-400);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all var(--dur-fast);
+    }
+    .remove-card-btn:hover { background: #FFF5F5; border-color: #E53935; color: #E53935; }
+
+    /* Minimum qty hint */
+    .qty-hint {
+      font-size: 0.72rem;
+      color: var(--gray-400);
+    }
+
+    /* Add product button */
+    .add-product-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1rem;
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: var(--red);
+      border: 1.5px dashed rgba(200,16,46,0.3);
+      border-radius: var(--radius-lg);
+      background: transparent;
+      width: 100%;
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out);
+    }
+    .add-product-btn:hover { background: var(--red-pale); border-style: solid; }
+
+    /* Order summary bar */
+    .order-summary {
+      display: none;
+      background: var(--gray-800);
+      border-radius: var(--radius-md);
+      padding: 0.9rem 1.2rem;
+      margin-top: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .order-summary span { font-size: 0.84rem; color: rgba(255,255,255,0.65); }
+    .order-summary strong { color: white; font-size: 1rem; }
+
+    /* ════════════════════════════════════════
+       SUBMIT
+    ════════════════════════════════════════ */
+    .form-submit-area {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--gray-100);
+    }
+
+    .form-submit-area .btn {
+      width: 100%;
+      justify-content: center;
+      font-size: 1rem;
+      padding: 1rem;
+    }
+
+    .submit-note {
+      text-align: center;
+      font-size: 0.76rem;
+      color: var(--gray-400);
+      margin-top: 0.75rem;
+      line-height: 1.55;
+    }
+
+    /* ════════════════════════════════════════
+       SUCCESS STATE
+    ════════════════════════════════════════ */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 3.5rem 2rem;
+    }
+
+    .success-icon-wrap {
+      width: 80px; height: 80px;
+      background: #F0FAF3;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .success-icon-wrap svg { width: 40px; height: 40px; color: #2D8A4E; }
+
+    .success-msg h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--gray-800);
+      margin-bottom: 0.75rem;
+    }
+
+    .success-msg p { color: var(--gray-600); line-height: 1.75; font-size: 0.95rem; }
+
+    /* ════════════════════════════════════════
+       SP OUT-OF-RANGE WARNING
+    ════════════════════════════════════════ */
+    .sp-warning-inline {
+      display: none;
+      background: #FFF5F5;
+      border: 1.5px solid #E53935;
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1.1rem;
+      font-size: 0.84rem;
+      color: #B71C1C;
+      margin-top: 0.5rem;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .sp-warning-inline.show { display: flex; }
+    .sp-warning-inline i { font-size: 1rem; flex-shrink: 0; }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .atacado-grid { grid-template-columns: 1fr; }
+      .atacado-info { position: static; }
+    }
+
+    @media (max-width: 640px) {
+      .form-row, .cep-row { grid-template-columns: 1fr; }
+      .atacado-form-wrap { padding: 1.5rem; }
+      .pcard-top { grid-template-columns: 72px 1fr; }
+      .pcard-thumb { width: 72px; }
+    }
+  </style>
+  <!-- ═══ FAVICON ═══ -->
+  <link rel="icon"             type="image/x-icon"    href="../images/favicon.ico">
+  <link rel="icon"             type="image/png" sizes="32x32"  href="../images/favicon-32.png">
+  <link rel="icon"             type="image/png" sizes="16x16"  href="../images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180"                 href="../images/favicon-180.png">
+  <meta name="theme-color" content="#C8102E">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="announcement-track">
+      <span>Encomendas no atacado disponíveis &nbsp;·&nbsp; Atendemos São Paulo e região &nbsp;·&nbsp; Resposta em até 24h &nbsp;·&nbsp; Mínimo 20 unidades por sabor &nbsp;·&nbsp; Encomendas no atacado disponíveis &nbsp;·&nbsp; Atendemos São Paulo e região &nbsp;·&nbsp; Resposta em até 24h</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header__inner">
+            <a href="../index.html" class="header__logo">
+        <img src="../images/logos/logo-branco-transparent.png"  alt="CreamCherry" class="logo-white">
+        <img src="../images/logos/logo-original-transparent.png" alt="CreamCherry" class="logo-color">
+      </a>
+            <nav class="header__nav">
+        <a href="../index.html"    class="nav__link">Home</a>
+        <a href="sobre.html"       class="nav__link">Sobre nós</a>
+        <a href="cardapio.html"    class="nav__link">Cardápio</a>
+        <a href="atacado.html"   class="nav__link active">Atacado</a>
+        <a href="franquias.html"   class="nav__link">Franquias</a>
+        <a href="suporte.html"     class="nav__link ">Suporte</a>
+      </nav>
+      <div class="header__actions">
+        <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20saber%20mais%20sobre%20encomendas%20no%20atacado." target="_blank" class="btn btn--red">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+
+    
+  </header>
+
+  <!-- Mobile menu — OUTSIDE header to avoid stacking context trap -->
+  <div class="mobile-menu" id="mobileMenu">
+      <button class="mobile-menu__close" id="mobileClose"><i class="fa-solid fa-xmark"></i></button>
+            <div class="mobile-menu__logo"><img src="../images/logos/logo-original-transparent.png" alt="CreamCherry" style="height:44px;width:auto;"></div>
+            <nav class="mobile-menu__nav">
+        <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="sobre.html"><i class="fa-solid fa-circle-info"></i> Sobre nós</a>
+        <a href="cardapio.html"><i class="fa-solid fa-ice-cream"></i> Cardápio</a>
+        <a href="atacado.html"><i class="fa-solid fa-box-open"></i> Atacado</a>
+        <a href="franquias.html"><i class="fa-solid fa-handshake"></i> Franquias</a>
+        <a href="suporte.html"><i class="fa-solid fa-headset"></i> Suporte</a>
+      </nav>
+      <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Quero%20saber%20sobre%20atacado." target="_blank"
+         class="btn btn--red btn--lg" style="margin-top:2rem;width:100%;justify-content:center;">
+        <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+      </a>
+      <div class="mobile-menu__social">
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="container page-hero__content">
+        <span class="eyebrow" style="color:rgba(255,255,255,0.75)">Atacado & Encomendas</span>
+        <h1>Sorvetes premium <em>em escala</em></h1>
+        <p>Atendemos revendedores, estabelecimentos e pequenos negócios com qualidade artesanal e a praticidade do atacado.</p>
+      </div>
+      <div class="page-hero__wave">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#f9f9f9"/></svg>
+      </div>
+    </section>
+
+    <section class="atacado-page">
+      <div class="container">
+
+        <!-- SP Alert -->
+        <div class="sp-alert reveal">
+          <div class="sp-alert__icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div>
+            <strong>Atendemos exclusivamente São Paulo e região</strong>
+            Nosso serviço de encomendas no atacado está disponível apenas para endereços no estado de São Paulo. Pedidos fora desta área não poderão ser processados no momento.
+          </div>
+        </div>
+
+        <div class="atacado-grid">
+
+          <!-- ── Sidebar ── -->
+          <aside class="atacado-info">
+
+            <div class="info-card reveal-left">
+              <div class="info-card__title">
+                <i class="fa-solid fa-circle-info"></i> Informações gerais
+              </div>
+              <div class="info-item">
+                <div class="info-item__icon"><i class="fa-solid fa-box"></i></div>
+                <div>
+                  <strong>Pedido mínimo</strong>
+                  <span>20 unidades por sabor</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-item__icon"><i class="fa-solid fa-clock"></i></div>
+                <div>
+                  <strong>Prazo de produção</strong>
+                  <span>3 a 5 dias úteis após confirmação</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-item__icon"><i class="fa-solid fa-truck"></i></div>
+                <div>
+                  <strong>Entrega</strong>
+                  <span>Toda São Paulo. Frete calculado por CEP</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-item__icon"><i class="fa-solid fa-credit-card"></i></div>
+                <div>
+                  <strong>Pagamento</strong>
+                  <span>Pix, boleto ou cartão parcelado</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-item__icon"><i class="fa-solid fa-reply"></i></div>
+                <div>
+                  <strong>Retorno</strong>
+                  <span>Em até 24 horas úteis</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-card reveal-left">
+              <div class="info-card__title">
+                <i class="fa-solid fa-users"></i> Quem pode solicitar
+              </div>
+              <div class="profile-types">
+                <div class="profile-badge">
+                  <div class="profile-badge__icon"><i class="fa-solid fa-store"></i></div>
+                  Revendedor / Sorveteria
+                </div>
+                <div class="profile-badge">
+                  <div class="profile-badge__icon"><i class="fa-solid fa-utensils"></i></div>
+                  Restaurante / Lanchonete
+                </div>
+                <div class="profile-badge">
+                  <div class="profile-badge__icon"><i class="fa-solid fa-cake-candles"></i></div>
+                  Confeitaria / Buffet
+                </div>
+                <div class="profile-badge">
+                  <div class="profile-badge__icon"><i class="fa-solid fa-basket-shopping"></i></div>
+                  Mercado / Mercearia
+                </div>
+                <div class="profile-badge">
+                  <div class="profile-badge__icon"><i class="fa-solid fa-star"></i></div>
+                  Eventos e Festas
+                </div>
+                <div class="profile-badge">
+                  <div class="profile-badge__icon"><i class="fa-solid fa-house"></i></div>
+                  Uso Pessoal / Familiar
+                </div>
+              </div>
+            </div>
+
+            <div class="info-card reveal-left">
+              <div class="info-card__title">
+                <i class="fa-brands fa-whatsapp"></i> Prefere falar direto?
+              </div>
+              <p style="font-size:.82rem;color:var(--gray-600);margin-bottom:1rem;line-height:1.6">
+                Nossa equipe comercial atende no WhatsApp de seg. a sex., das 9h às 18h.
+              </p>
+              <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20uma%20encomenda%20no%20atacado.%20Podem%20me%20ajudar%3F"
+                 target="_blank" class="btn btn--red" style="width:100%;justify-content:center;">
+                <i class="fa-brands fa-whatsapp"></i> Iniciar conversa
+              </a>
+              <p style="font-size:.74rem;color:var(--gray-400);margin-top:.75rem;text-align:center">
+                +55 11 98958-2586
+              </p>
+            </div>
+
+          </aside>
+
+          <!-- ── Form ── -->
+          <div class="atacado-form-wrap reveal-right">
+
+            <!-- Success -->
+            <div class="success-msg" id="successMsg">
+              <div class="success-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+              </div>
+              <h3>Solicitação enviada!</h3>
+              <p>Nossa equipe analisará seu pedido e entrará em contato em até <strong>24 horas úteis</strong> pelo e-mail ou telefone informados.<br><br>
+              Para retorno mais rápido, fale conosco pelo WhatsApp <strong>(11) 98958-2586</strong>.</p>
+              <a href="atacado.html" class="btn btn--red btn--lg" style="margin-top:2rem">
+                <i class="fa-solid fa-rotate-left"></i> Fazer outra solicitação
+              </a>
+            </div>
+
+            <!-- Form content -->
+            <div id="formContent">
+              <h2>Solicitação de Encomenda</h2>
+              <p>Preencha os campos abaixo com atenção. Nossa equipe retornará em até 24 horas úteis com orçamento e confirmação.</p>
+
+              <!-- 1. Dados pessoais -->
+              <div class="form-section-title">
+                <i class="fa-solid fa-user"></i> 1. Seus Dados
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Nome <span class="required">*</span></label>
+                  <input type="text" id="firstName" placeholder="Seu nome" autocomplete="given-name">
+                  <div class="field-error" id="err-firstName">Informe seu nome.</div>
+                </div>
+                <div class="form-group">
+                  <label>Sobrenome <span class="required">*</span></label>
+                  <input type="text" id="lastName" placeholder="Seu sobrenome" autocomplete="family-name">
+                  <div class="field-error" id="err-lastName">Informe seu sobrenome.</div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>E-mail <span class="required">*</span></label>
+                  <input type="email" id="email" placeholder="seu@email.com" autocomplete="email">
+                  <div class="field-error" id="err-email">Informe um e-mail válido.</div>
+                </div>
+                <div class="form-group">
+                  <label>Telefone / WhatsApp <span class="required">*</span></label>
+                  <input type="tel" id="phone" placeholder="(11) 9 9999-9999" maxlength="16" autocomplete="tel">
+                  <div class="field-error" id="err-phone">Informe um telefone com DDD.</div>
+                </div>
+              </div>
+
+              <!-- 2. Perfil -->
+              <div class="form-section-title">
+                <i class="fa-solid fa-briefcase"></i> 2. Seu Perfil
+              </div>
+
+              <div class="form-group">
+                <label>Como você atua no mercado? <span class="required">*</span></label>
+                <select id="perfil">
+                  <option value="">Selecione seu perfil</option>
+                  <option value="revendedor">Revendedor / Sorveteria</option>
+                  <option value="restaurante">Restaurante / Lanchonete</option>
+                  <option value="confeitaria">Confeitaria / Buffet de Eventos</option>
+                  <option value="mercado">Pequeno Mercado / Mercearia</option>
+                  <option value="eventos">Eventos e Festas</option>
+                  <option value="pessoal">Uso Pessoal / Familiar</option>
+                </select>
+                <div class="field-error" id="err-perfil">Selecione seu perfil.</div>
+              </div>
+
+              <!-- 3. Endereço -->
+              <div class="form-section-title">
+                <i class="fa-solid fa-location-dot"></i> 3. Endereço de Entrega
+                <span style="font-size:.68rem;color:var(--gray-400);letter-spacing:0;text-transform:none;font-weight:400;margin-left:.25rem">— somente São Paulo</span>
+              </div>
+
+              <div class="cep-row">
+                <div class="form-group">
+                  <label>CEP <span class="required">*</span></label>
+                  <input type="text" id="cep" placeholder="00000-000" maxlength="9" oninput="handleCep(this)">
+                  <div class="cep-loading" id="cepLoading">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Buscando...
+                  </div>
+                  <div class="field-error" id="err-cep">CEP inválido ou não encontrado.</div>
+                </div>
+                <div class="form-group">
+                  <label>Logradouro</label>
+                  <input type="text" id="logradouro" placeholder="Preenchido automaticamente" class="input-readonly" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Bairro</label>
+                  <input type="text" id="bairro" placeholder="Preenchido automaticamente" class="input-readonly" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Cidade / Estado</label>
+                  <input type="text" id="cidadeEstado" placeholder="Preenchido automaticamente" class="input-readonly" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Número <span class="required">*</span></label>
+                  <input type="text" id="numero" placeholder="Ex: 123, S/N" maxlength="10">
+                  <div class="field-error" id="err-numero">Informe o número do endereço.</div>
+                </div>
+                <div class="form-group">
+                  <label>Complemento</label>
+                  <input type="text" id="complemento" placeholder="Apto, Bloco, Sala..." maxlength="60">
+                </div>
+              </div>
+
+              <div class="sp-warning-inline" id="spWarning">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span><strong>CEP fora de São Paulo.</strong> Infelizmente ainda não atendemos esta região.</span>
+              </div>
+
+              <!-- 4. Produtos -->
+              <div class="form-section-title">
+                <i class="fa-solid fa-ice-cream"></i> 4. Produtos Desejados
+              </div>
+              <p style="font-size:.83rem;color:var(--gray-600);margin-bottom:1.2rem;line-height:1.55">
+                Selecione os produtos e informe as quantidades. Cada sabor requer no mínimo <strong>20 unidades</strong>.
+              </p>
+
+              <div class="product-selector-area" id="productSelectorArea"></div>
+
+              <button class="add-product-btn" onclick="addProductCard()" style="margin-top:.75rem">
+                <i class="fa-solid fa-plus"></i> Adicionar produto
+              </button>
+
+              <div class="order-summary" id="orderSummary">
+                <span>Total de itens solicitados:</span>
+                <strong id="totalQty">0 unidades</strong>
+              </div>
+
+              <!-- 5. Observações -->
+              <div class="form-section-title">
+                <i class="fa-solid fa-pen-to-square"></i> 5. Observações
+              </div>
+
+              <div class="form-group">
+                <label>Informações adicionais, data preferida de entrega ou pedidos especiais</label>
+                <textarea id="obs" rows="4" placeholder="Ex: preciso para o dia 20/06, embalagem personalizada, entrega em horário específico..."></textarea>
+              </div>
+
+              <!-- Submit -->
+              <div class="form-submit-area">
+                <button class="btn btn--red" onclick="submitAtacado()">
+                  <i class="fa-solid fa-paper-plane"></i> Enviar Solicitação
+                </button>
+                <p class="submit-note">
+                  Esta solicitação será enviada para <strong>Comercial@creamcherry.com.br</strong>.<br>
+                  Ao enviar, você concorda com nossa <a href="#" style="color:var(--red)">Política de Privacidade</a>.
+                </p>
+              </div>
+
+            </div><!-- /formContent -->
+          </div><!-- /atacado-form-wrap -->
+        </div><!-- /atacado-grid -->
+      </div>
+    </section>
+  </main>
+
+    <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="footer__logo"><img src="../images/logos/logo-branco-transparent.png" alt="CreamCherry" style="height:46px;width:auto;"></div>
+        <p>Sorvetes e gelattos artesanais feitos com ingredientes selecionados e muito amor. Desde 2018 adoçando os momentos especiais de milhares de famílias brasileiras.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre nós</a></li>
+          <li><a href="sobre.html#historia">Nossa história</a></li>
+          <li><a href="sobre.html#sustentabilidade">Sustentabilidade</a></li>
+          <li><a href="#">Trabalhe conosco</a></li>
+          <li><a href="#">Imprensa</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Produtos</h4>
+        <ul>
+          <li><a href="cardapio.html?cat=tradicionais">Sorvetes Tradicionais</a></li>
+          <li><a href="cardapio.html?cat=gelattos">Gelattos Artesanais</a></li>
+          <li><a href="cardapio.html?cat=veganos">Linha Vegana</a></li>
+          <li><a href="cardapio.html?cat=especiais">Especiais</a></li>
+          <li><a href="cardapio.html">Cardápio Completo</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="suporte.html">Central de Ajuda</a></li>
+          <li><a href="suporte.html">Fale Conosco</a></li>
+          <li><a href="#">Política de Entrega</a></li>
+          <li><a href="#">Trocas e Devoluções</a></li>
+          <li><a href="atacado.html">Encomendas Atacado</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Seja um Parceiro</h4>
+        <ul>
+          <li><a href="franquias.html">Franquias CreamCherry</a></li>
+          <li><a href="#">Fornecedores</a></li>
+          <li><a href="#">Programa de Afiliados</a></li>
+        </ul>
+        <div class="footer__apps">
+          <h4>Peça pelo app</h4>
+          <a href="#" class="app-badge"><i class="fa-brands fa-apple"></i> App Store</a>
+          <a href="#" class="app-badge"><i class="fa-brands fa-google-play"></i> Google Play</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__mid">
+      <div class="footer__payment">
+        <span>Pagamento:</span>
+        <div class="payment-icons">
+          <!-- Visa -->
+          <div class="payment-badge" title="Visa">
+            <svg viewBox="0 0 48 16" xmlns="http://www.w3.org/2000/svg">
+              <text x="0" y="13" font-family="Arial" font-weight="900" font-size="14" fill="#1A1F71">VISA</text>
+            </svg>
+          </div>
+          <!-- Mastercard -->
+          <div class="payment-badge" title="Mastercard" style="gap:3px;display:flex;align-items:center;padding:3px 5px">
+            <svg viewBox="0 0 38 24" width="38" height="24" xmlns="http://www.w3.org/2000/svg">
+              <rect width="38" height="24" rx="4" fill="white"/>
+              <circle cx="14" cy="12" r="8" fill="#EB001B"/>
+              <circle cx="24" cy="12" r="8" fill="#F79E1B"/>
+              <path d="M19 6.27a8 8 0 0 1 0 11.46A8 8 0 0 1 19 6.27z" fill="#FF5F00"/>
+            </svg>
+          </div>
+          <!-- Pix -->
+          <div class="payment-badge payment-badge--pix" title="Pix">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 8l10.6 10.6-10.6 10.6L21.4 18.6z" fill="white"/>
+              <path d="M32 34.8l10.6 10.6L32 56l-10.6-10.6z" fill="white"/>
+              <path d="M8 32l10.6-10.6 10.6 10.6-10.6 10.6z" fill="white"/>
+              <path d="M34.8 32l10.6-10.6L56 32l-10.6 10.6z" fill="white"/>
+            </svg>
+          </div>
+          <!-- Elo -->
+          <div class="payment-badge" title="Elo" style="background:#FFD000">
+            <svg viewBox="0 0 48 20" xmlns="http://www.w3.org/2000/svg">
+              <text x="2" y="15" font-family="Arial" font-weight="900" font-size="13" fill="#00A0E0">elo</text>
+            </svg>
+          </div>
+          <!-- AmEx -->
+          <div class="payment-badge" title="American Express" style="background:#007BC1">
+            <svg viewBox="0 0 52 16" xmlns="http://www.w3.org/2000/svg">
+              <text x="0" y="13" font-family="Arial" font-weight="700" font-size="9.5" fill="white" letter-spacing="0.5">AMEX</text>
+            </svg>
+          </div>
+          <!-- VR -->
+          <div class="payment-badge payment-badge--vr" title="VR Benefícios">
+            <svg viewBox="0 0 36 20" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="20" rx="3" fill="#EF7D00"/>
+              <text x="4" y="14" font-family="Arial" font-weight="900" font-size="11" fill="white">VR</text>
+            </svg>
+          </div>
+          <!-- Alelo -->
+          <div class="payment-badge payment-badge--alelo" title="Alelo">
+            <svg viewBox="0 0 48 20" xmlns="http://www.w3.org/2000/svg">
+              <rect width="48" height="20" rx="3" fill="#EC1C24"/>
+              <text x="4" y="14" font-family="Arial" font-weight="700" font-size="10" fill="white">alelo</text>
+            </svg>
+          </div>
+          <!-- Dinheiro -->
+          <div class="payment-badge payment-badge--dinheiro" title="Dinheiro">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="5" width="22" height="14" rx="2" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="1" y1="9" x2="5" y2="9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="19" y1="9" x2="23" y2="9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="1" y1="15" x2="5" y2="15" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="19" y1="15" x2="23" y2="15" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="footer__delivery-brands">
+        <span>Peça via:</span>
+        <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" class="del-brand" style="text-decoration:none">99Food</a>
+        <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" class="del-brand" style="text-decoration:none">WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© 2025 CreamCherry Sobremesas LTDA. CNPJ: 00.000.000/0001-00. Todos os direitos reservados.</p>
+      <div class="footer__legal">
+        <a href="#">Termos de Uso</a><a href="#">Privacidade</a><a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido%20no%20atacado.%20Podem%20me%20ajudar%3F"
+     class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/forms.js"></script>
+  <script>
+  /* ══════════════════════════════════════════
+     PRODUCT DATA — com ilustração SVG por categoria
+  ══════════════════════════════════════════ */
+
+  // Inline SVG illustrations per category
+  const SVG_TRADICIONAL = `<svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 28 L26 48 L36 28 Z" fill="#D4956A"/>
+    <path d="M16 28 L26 48 L36 28 Z" fill="url(#cT)"/>
+    <ellipse cx="26" cy="24" rx="11" ry="10" fill="#FFF5E4"/>
+    <ellipse cx="26" cy="21" rx="9" ry="7.5" fill="white"/>
+    <circle cx="26" cy="14" r="3" fill="#C8102E"/>
+    <path d="M26 11 Q30 7 34 8" stroke="#2D6A1F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <defs>
+      <linearGradient id="cT" x1="16" y1="0" x2="36" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#C8874A"/>
+        <stop offset="50%" stop-color="#E8A86A"/>
+        <stop offset="100%" stop-color="#C8874A"/>
+      </linearGradient>
+    </defs>
+  </svg>`;
+
+  const SVG_ESPECIAL = `<svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15 29 L26 49 L37 29 Z" fill="url(#cE)"/>
+    <ellipse cx="22" cy="26" rx="9" ry="9" fill="#F9A8B8"/>
+    <ellipse cx="22" cy="23" rx="7.5" ry="6.5" fill="#FBBFCC"/>
+    <ellipse cx="30" cy="24" rx="10" ry="9.5" fill="#FFF5E4"/>
+    <ellipse cx="30" cy="21" rx="8.5" ry="7.5" fill="white"/>
+    <circle cx="28" cy="13" r="3.5" fill="#C8102E"/>
+    <circle cx="28" cy="13" r="2" fill="#E01535"/>
+    <path d="M28 9.5 Q32 6 36 7" stroke="#2D6A1F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <defs>
+      <linearGradient id="cE" x1="15" y1="0" x2="37" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#C8874A"/>
+        <stop offset="50%" stop-color="#E8A86A"/>
+        <stop offset="100%" stop-color="#C8874A"/>
+      </linearGradient>
+    </defs>
+  </svg>`;
+
+  const SVG_VEGANO = `<svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 28 L26 48 L36 28 Z" fill="url(#cV)"/>
+    <ellipse cx="26" cy="24" rx="11" ry="10" fill="#C8F5D0"/>
+    <ellipse cx="26" cy="21" rx="9" ry="7.5" fill="#E6FAE9"/>
+    <path d="M22 15 Q26 10 30 15 Q28 12 26 13 Q24 12 22 15Z" fill="#2D8A4E"/>
+    <path d="M26 15 L26 19" stroke="#2D8A4E" stroke-width="1.5" stroke-linecap="round"/>
+    <defs>
+      <linearGradient id="cV" x1="16" y1="0" x2="36" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#C8874A"/>
+        <stop offset="50%" stop-color="#E8A86A"/>
+        <stop offset="100%" stop-color="#C8874A"/>
+      </linearGradient>
+    </defs>
+  </svg>`;
+
+  const SVG_GELATTO = `<svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="19" y="28" width="14" height="20" rx="2" fill="url(#cG)"/>
+    <ellipse cx="26" cy="28" rx="10" ry="10" fill="#DBEAFE"/>
+    <ellipse cx="26" cy="25" rx="8.5" ry="7.5" fill="#EFF6FF"/>
+    <ellipse cx="26" cy="22" rx="7" ry="6" fill="white"/>
+    <path d="M26 16 Q29 13 32 14" stroke="#1565C0" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".5"/>
+    <defs>
+      <linearGradient id="cG" x1="19" y1="0" x2="33" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#9DA8C8"/>
+        <stop offset="100%" stop-color="#B8C2DE"/>
+      </linearGradient>
+    </defs>
+  </svg>`;
+
+  const PRODUTOS_ATACADO = [
+    { id:'baunilha',   name:'Baunilha Clássica',      cat:'tradicional', desc:'Fava de baunilha Bourbon, suave e aveludada.' },
+    { id:'chocolate',  name:'Chocolate Belga',         cat:'tradicional', desc:'Cacau 70% importado, intenso e cremoso.' },
+    { id:'morango',    name:'Morango Fresco',           cat:'tradicional', desc:'Morangos selecionados da estação.' },
+    { id:'amendoim',   name:'Crocante de Amendoim',    cat:'tradicional', desc:'Pasta de amendoim com pedaços crocantes.' },
+    { id:'limao',      name:'Limão Siciliano',          cat:'tradicional', desc:'Azedo na medida certa, muito refrescante.' },
+    { id:'mirtilo',    name:'Mirtilo & Nata',           cat:'tradicional', desc:'Mirtilos frescos com creme de nata.' },
+    { id:'cherry_cc',  name:'Cherry Cheesecake',        cat:'especial',    desc:'Cream cheese, calda de cereja e biscoito.' },
+    { id:'pistache',   name:'Pistache Italiano',        cat:'especial',    desc:'Pistache siciliano, receita autêntica.' },
+    { id:'nutella',    name:'Nutella Trufado',          cat:'especial',    desc:'Avelã e Nutella com pedaços de trufa.' },
+    { id:'tiramisu',   name:'Tiramisù',                 cat:'especial',    desc:'Mascarpone, café espresso e cacau.' },
+    { id:'coco_mara',  name:'Coco & Maracujá',          cat:'vegano',      desc:'Base de leite de coco, 100% vegano.' },
+    { id:'acai',       name:'Açaí Power',               cat:'vegano',      desc:'Açaí amazônico com banana e granola.' },
+    { id:'choco_veg',  name:'Chocolate Vegano',         cat:'vegano',      desc:'Cacau 70% com leite de amêndoa.' },
+    { id:'matcha',     name:'Matcha & Limão',           cat:'vegano',      desc:'Chá verde japonês com raspas de limão.' },
+    { id:'gel_cereja', name:'Gelatto Cereja',           cat:'gelatto',     desc:'Gelatto italiano tradicional de cereja.' },
+    { id:'gel_pist',   name:'Gelatto Pistacchio',       cat:'gelatto',     desc:'Pistache siciliano, receita da Bronte.' },
+    { id:'gel_ciocco', name:'Gelatto Cioccolato Nero',  cat:'gelatto',     desc:'Chocolate negro 72%, amargo e suave.' },
+    { id:'fiordi',     name:'Gelatto Fiordilatte',      cat:'gelatto',     desc:'O clássico gelatto branco, puro e cremoso.' },
+  ];
+
+  const CAT_META = {
+    tradicional: { label:'Tradicional', svg: SVG_TRADICIONAL },
+    especial:    { label:'Especial',    svg: SVG_ESPECIAL    },
+    vegano:      { label:'Vegano',      svg: SVG_VEGANO      },
+    gelatto:     { label:'Gelatto',     svg: SVG_GELATTO     },
+  };
+
+  const productOptions = `<option value="">Selecione o produto</option>` +
+    ['tradicional','especial','vegano','gelatto'].map(cat => {
+      const items = PRODUTOS_ATACADO.filter(p => p.cat === cat);
+      return `<optgroup label="${CAT_META[cat].label}">${
+        items.map(p => `<option value="${p.id}">${p.name}</option>`).join('')
+      }</optgroup>`;
+    }).join('');
+
+  let rowCount = 0;
+
+  function getProduct(id) {
+    return PRODUTOS_ATACADO.find(p => p.id === id) || null;
+  }
+
+  function addProductCard(productId = '', qty = 20) {
+    rowCount++;
+    const rid = rowCount;
+    const card = document.createElement('div');
+    card.className = 'product-card-row';
+    card.id = `prow-${rid}`;
+
+    card.innerHTML = `
+      <div class="pcard-top">
+        <div class="pcard-thumb cat-default" id="pthumb-${rid}">
+          <!-- illustration injected by JS -->
+          <svg viewBox="0 0 52 52" fill="none" width="52" height="52">
+            <rect x="16" y="28" width="20" height="18" rx="3" fill="#E5DDD6"/>
+            <ellipse cx="26" cy="28" rx="10" ry="10" fill="#F2EDE8"/>
+            <ellipse cx="26" cy="25" rx="8" ry="7" fill="#FAF9F8"/>
+          </svg>
+          <span class="pcard-thumb-label" id="plabel-${rid}">Selecione</span>
+        </div>
+        <div class="pcard-info">
+          <select class="pcard-select" id="psel-${rid}" onchange="onProductChange(${rid})">
+            ${productOptions}
+          </select>
+          <div class="pcard-meta" id="pmeta-${rid}" style="display:none">
+            <span class="pcard-tag" id="ptag-${rid}"></span>
+            <span class="pcard-desc" id="pdesc-${rid}"></span>
+          </div>
+        </div>
+      </div>
+      <div class="pcard-bottom">
+        <span class="qty-label">Quantidade:</span>
+        <div class="qty-controls">
+          <button class="qty-btn" onclick="changeQty(${rid},-10)" title="−10">−</button>
+          <input class="form-group input qty-input" type="number" id="qty-${rid}" value="${qty}" min="20" step="10" oninput="clampQty(${rid}); updateSummary()">
+          <button class="qty-btn" onclick="changeQty(${rid},+10)" title="+10">+</button>
+        </div>
+        <span class="qty-hint">mín. 20</span>
+        <button class="remove-card-btn" onclick="removeCard(${rid})" title="Remover produto">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    `;
+
+    document.getElementById('productSelectorArea').appendChild(card);
+
+    if (productId) {
+      const sel = document.getElementById(`psel-${rid}`);
+      sel.value = productId;
+      onProductChange(rid);
+    }
+
+    updateSummary();
+  }
+
+  function onProductChange(rid) {
+    const sel   = document.getElementById(`psel-${rid}`);
+    const thumb = document.getElementById(`pthumb-${rid}`);
+    const label = document.getElementById(`plabel-${rid}`);
+    const meta  = document.getElementById(`pmeta-${rid}`);
+    const tag   = document.getElementById(`ptag-${rid}`);
+    const desc  = document.getElementById(`pdesc-${rid}`);
+    const card  = document.getElementById(`prow-${rid}`);
+
+    const prod = getProduct(sel.value);
+
+    if (!prod) {
+      // Reset to default state
+      thumb.className = 'pcard-thumb cat-default';
+      thumb.querySelector('svg')?.remove();
+      thumb.insertAdjacentHTML('afterbegin', `<svg viewBox="0 0 52 52" fill="none" width="52" height="52">
+        <rect x="16" y="28" width="20" height="18" rx="3" fill="#E5DDD6"/>
+        <ellipse cx="26" cy="28" rx="10" ry="10" fill="#F2EDE8"/>
+        <ellipse cx="26" cy="25" rx="8" ry="7" fill="#FAF9F8"/>
+      </svg>`);
+      label.textContent = 'Selecione';
+      meta.style.display = 'none';
+      card.classList.remove('has-product');
+      return;
+    }
+
+    const catKey = prod.cat;
+    const catMeta = CAT_META[catKey];
+
+    // Update thumbnail
+    thumb.className = `pcard-thumb cat-${catKey}`;
+    thumb.querySelector('svg')?.remove();
+    thumb.insertAdjacentHTML('afterbegin', catMeta.svg);
+    label.textContent = catMeta.label;
+
+    // Update meta
+    tag.textContent = catMeta.label;
+    tag.className = `pcard-tag cat-${catKey}`;
+    desc.textContent = prod.desc;
+    meta.style.display = 'flex';
+    card.classList.add('has-product');
+
+    updateSummary();
+  }
+
+  function removeCard(rid) {
+    const el = document.getElementById(`prow-${rid}`);
+    if (el) { el.style.opacity = '0'; el.style.transform = 'scale(0.95)'; el.style.transition = 'all .2s'; setTimeout(() => { el.remove(); updateSummary(); }, 200); }
+  }
+
+  function changeQty(rid, delta) {
+    const inp = document.getElementById(`qty-${rid}`);
+    if (!inp) return;
+    inp.value = Math.max(20, (parseInt(inp.value) || 20) + delta);
+    updateSummary();
+  }
+
+  function clampQty(rid) {
+    const inp = document.getElementById(`qty-${rid}`);
+    if (!inp) return;
+    if (parseInt(inp.value) < 20 || isNaN(parseInt(inp.value))) inp.value = 20;
+    updateSummary();
+  }
+
+  function updateSummary() {
+    const rows = document.querySelectorAll('#productSelectorArea .product-card-row');
+    let total = 0;
+    rows.forEach(row => {
+      const inp = row.querySelector('input[type=number]');
+      total += inp ? (parseInt(inp.value) || 0) : 0;
+    });
+    const summary = document.getElementById('orderSummary');
+    summary.style.display = rows.length ? 'flex' : 'none';
+    document.getElementById('totalQty').textContent = `${total} unidades`;
+  }
+
+  // Init with 2 cards
+  addProductCard();
+  addProductCard();
+
+  /* ══════════════════════════════════════════
+     CEP — ViaCEP
+  ══════════════════════════════════════════ */
+  let cepTimer = null;
+
+  function maskCep(v) { return v.replace(/\D/g,'').replace(/^(\d{5})(\d)/,'$1-$2').substring(0,9); }
+
+  function handleCep(input) {
+    input.value = maskCep(input.value);
+    const raw = input.value.replace(/\D/g,'');
+    clearTimeout(cepTimer);
+    if (raw.length === 8) cepTimer = setTimeout(() => fetchCep(raw), 450);
+    else clearAddress();
+  }
+
+  function clearAddress() {
+    ['logradouro','bairro','cidadeEstado'].forEach(id => { document.getElementById(id).value = ''; });
+    document.getElementById('spWarning').classList.remove('show');
+  }
+
+  async function fetchCep(cep) {
+    const loading = document.getElementById('cepLoading');
+    const errEl   = document.getElementById('err-cep');
+    const spWarn  = document.getElementById('spWarning');
+    const cepInp  = document.getElementById('cep');
+
+    loading.classList.add('show');
+    clearAddress();
+    errEl.classList.remove('show');
+    spWarn.classList.remove('show');
+
+    try {
+      const res  = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = await res.json();
+
+      if (data.erro) {
+        cepInp.classList.add('error');
+        errEl.textContent = 'CEP não encontrado. Verifique e tente novamente.';
+        errEl.classList.add('show');
+        return;
+      }
+
+      if (data.uf !== 'SP') {
+        cepInp.classList.add('error');
+        spWarn.classList.add('show');
+        return;
+      }
+
+      cepInp.classList.remove('error');
+      cepInp.classList.add('valid');
+      document.getElementById('logradouro').value  = data.logradouro || '';
+      document.getElementById('bairro').value      = data.bairro     || '';
+      document.getElementById('cidadeEstado').value = `${data.localidade} / ${data.uf}`;
+    } catch {
+      errEl.textContent = 'Erro ao consultar o CEP. Tente novamente.';
+      errEl.classList.add('show');
+    } finally {
+      loading.classList.remove('show');
+    }
+  }
+
+  /* ══════════════════════════════════════════
+     PHONE MASK
+  ══════════════════════════════════════════ */
+  document.getElementById('phone').addEventListener('input', function() {
+    let v = this.value.replace(/\D/g,'');
+    if (v.length <= 10) v = v.replace(/^(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3');
+    else v = v.replace(/^(\d{2})(\d{5})(\d{0,4})/,'($1) $2-$3');
+    this.value = v.substring(0,16);
+  });
+
+  /* ══════════════════════════════════════════
+     VALIDATION & SUBMIT
+  ══════════════════════════════════════════ */
+  function setErr(id, show, msg) {
+    const inp = document.getElementById(id);
+    const err = document.getElementById(`err-${id}`);
+    if (err) { if (msg) err.textContent = msg; err.classList.toggle('show', show); }
+    if (inp) inp.classList.toggle('error', show);
+    return show;
+  }
+
+  async function submitAtacado() {
+    let bad = false;
+
+    bad = setErr('firstName', !document.getElementById('firstName').value.trim()) || bad;
+    bad = setErr('lastName',  !document.getElementById('lastName').value.trim())  || bad;
+    bad = setErr('email',     !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value.trim())) || bad;
+    bad = setErr('phone',     document.getElementById('phone').value.replace(/\D/g,'').length < 10) || bad;
+    bad = setErr('perfil',    !document.getElementById('perfil').value) || bad;
+
+    const cepRaw = document.getElementById('cep').value.replace(/\D/g,'');
+    bad = setErr('cep', cepRaw.length !== 8 || document.getElementById('cep').classList.contains('error')) || bad;
+    bad = setErr('numero', !document.getElementById('numero').value.trim()) || bad;
+
+    if (document.getElementById('spWarning').classList.contains('show')) {
+      showToast('Endereço fora de São Paulo. Não atendemos esta região.');
+      bad = true;
+    }
+
+    // Validate products
+    const cards = document.querySelectorAll('#productSelectorArea .product-card-row');
+    const products = [];
+    cards.forEach(card => {
+      const sel = card.querySelector('.pcard-select');
+      const qty = card.querySelector('input[type=number]');
+      if (sel && sel.value && qty && parseInt(qty.value) >= 20) {
+        const prod = getProduct(sel.value);
+        products.push({ produto: prod ? prod.name : sel.value, quantidade: parseInt(qty.value) });
+      }
+    });
+
+    if (!products.length) {
+      showToast('Adicione pelo menos 1 produto com mínimo de 20 unidades.');
+      bad = true;
+    }
+
+    if (bad) {
+      document.querySelector('.error, .field-error.show')?.scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
+
+    const payload = {
+      nome:        document.getElementById('firstName').value.trim() + ' ' + document.getElementById('lastName').value.trim(),
+      email:       document.getElementById('email').value.trim(),
+      telefone:    document.getElementById('phone').value,
+      perfil:      document.getElementById('perfil').value,
+      cep:         document.getElementById('cep').value,
+      logradouro:  document.getElementById('logradouro').value,
+      bairro:      document.getElementById('bairro').value,
+      cidade:      document.getElementById('cidadeEstado').value,
+      numero:      document.getElementById('numero').value,
+      complemento: document.getElementById('complemento').value,
+      produtos:    products,
+      obs:         document.getElementById('obs').value,
+    };
+
+    const enviado = await enviarAtacado(payload);
+    if (!enviado) { showToast('Erro ao enviar. Tente pelo WhatsApp.'); return; }
+
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('successMsg').style.display  = 'block';
+    document.querySelector('.atacado-form-wrap').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+  </script>
+  <!-- VLibras Acessibilidade -->
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>new window.VLibras.Widget("https://vlibras.gov.br/app");</script>
+</body>
+</html>

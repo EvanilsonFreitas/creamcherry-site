@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreamCherry — Sorvetes & Gelattos Premium</title>
+  <meta name="description" content="CreamCherry: sorvetes artesanais e gelattos premium. Ingredientes selecionados, sabores irresistíveis. Peça agora!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <!-- ═══ FAVICON ═══ -->
+  <link rel="icon"             type="image/x-icon"    href="images/favicon.ico">
+  <link rel="icon"             type="image/png" sizes="32x32"  href="images/favicon-32.png">
+  <link rel="icon"             type="image/png" sizes="16x16"  href="images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180"                 href="images/favicon-180.png">
+  <meta name="theme-color" content="#C8102E">
+</head>
+<body>
+
+  <div class="announcement-bar">
+    <div class="announcement-track">
+      <span>🍒 Frete grátis acima de R$80 &nbsp;·&nbsp; 🌿 Novos sabores veganos chegaram &nbsp;·&nbsp; ✨ Gelattos artesanais feitos todo dia &nbsp;·&nbsp; 🚀 Delivery em até 40 min &nbsp;·&nbsp; 🏆 Premiado melhor sorveteria SP 2024 &nbsp;·&nbsp; 🍒 Frete grátis acima de R$80 &nbsp;·&nbsp; 🌿 Novos sabores veganos chegaram &nbsp;·&nbsp; ✨ Gelattos artesanais feitos todo dia &nbsp;·&nbsp; 🚀 Delivery em até 40 min &nbsp;·&nbsp; 🏆 Premiado melhor sorveteria SP 2024</span>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">
+        <img src="images/logos/logo-branco-transparent.png"  alt="CreamCherry Sobremesas" class="logo-white">
+        <img src="images/logos/logo-original-transparent.png" alt="CreamCherry Sobremesas" class="logo-color">
+      </a>
+      <nav class="header__nav">
+        <a href="index.html"              class="nav__link active">Home</a>
+        <a href="pages/sobre.html"        class="nav__link">Sobre nós</a>
+        <a href="pages/cardapio.html"     class="nav__link">Cardápio</a>
+        <a href="pages/atacado.html"      class="nav__link">Atacado</a>
+        <a href="pages/franquias.html"    class="nav__link">Franquias</a>
+        <a href="pages/suporte.html"      class="nav__link">Suporte</a>
+      </nav>
+      <div class="header__actions">
+        <a href="pages/cardapio.html" class="btn btn--outline">Ver Cardápio</a>
+        <a href="#delivery"           class="btn btn--red">Pedir Agora</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    
+  </header>
+
+  <!-- Mobile menu — OUTSIDE header to avoid stacking context trap -->
+  <div class="mobile-menu" id="mobileMenu">
+      <button class="mobile-menu__close" id="mobileClose"><i class="fa-solid fa-xmark"></i></button>
+      <div class="mobile-menu__logo">
+        <img src="images/logos/logo-original-transparent.png" alt="CreamCherry">
+      </div>
+      <nav class="mobile-menu__nav">
+        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="pages/sobre.html"><i class="fa-solid fa-circle-info"></i> Sobre nós</a>
+        <a href="pages/cardapio.html"><i class="fa-solid fa-ice-cream"></i> Cardápio</a>
+        <a href="pages/atacado.html"><i class="fa-solid fa-box-open"></i> Atacado</a>
+        <a href="pages/franquias.html"><i class="fa-solid fa-handshake"></i> Franquias</a>
+        <a href="pages/suporte.html"><i class="fa-solid fa-headset"></i> Suporte</a>
+      </nav>
+      <a href="#delivery" class="btn btn--red btn--lg" style="margin-top:2rem;width:100%;justify-content:center;">Pedir Agora</a>
+      <div class="mobile-menu__social">
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+
+  <main>
+
+    <!-- HERO — Premium Brand Statement -->
+    <section class="hero" id="hero">
+
+      <!-- Layered background -->
+      <div class="hero__bg">
+        <div class="hero__blob hero__blob--1"></div>
+        <div class="hero__blob hero__blob--2"></div>
+        <div class="hero__blob hero__blob--3"></div>
+        <div class="hero__dots"></div>
+        <div class="hero__lines"></div>
+      </div>
+
+      <div class="hero__container">
+
+        <!-- LEFT: Brand statement -->
+        <div class="hero__content">
+
+          <div class="hero__eyebrow">
+            <span class="hero__eyebrow-line"></span>
+            Sorvetes & Gelattos Artesanais · São Paulo
+          </div>
+
+          <div class="hero__headline">
+            <span class="hero__headline-pre">Bem-vindo à</span>
+            <span class="hero__headline-main">Cream <em>Cherry</em></span>
+            <span class="hero__headline-sub">desde o primeiro sabor</span>
+          </div>
+
+          <p class="hero__desc">
+            Ingredientes selecionados, receitas exclusivas e muito amor em cada colherada.
+            Sorvetes e gelattos artesanais premiados que transformam momentos em memórias.
+          </p>
+
+          <div class="hero__cta">
+            <a href="pages/cardapio.html" class="hero-btn-primary">
+              <i class="fa-solid fa-ice-cream"></i>
+              Explorar Cardápio
+            </a>
+            <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" rel="noopener" class="hero-btn-secondary">
+              <i class="fa-solid fa-motorcycle"></i>
+              Pedir pelo 99Food
+            </a>
+          </div>
+
+          <!-- Stats pill bar -->
+          <div class="hero__stats">
+            <div class="hero-stat">
+              <span class="hero-stat__value">+80</span>
+              <span class="hero-stat__label">Sabores</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat__value">4.9</span>
+              <span class="hero-stat__label">Avaliação</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat__value">+12k</span>
+              <span class="hero-stat__label">Clientes</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat__value">2018</span>
+              <span class="hero-stat__label">Desde</span>
+            </div>
+          </div>
+
+        </div><!-- /content -->
+
+        <!-- RIGHT: Product visual -->
+        <div class="hero__visual">
+          <div class="hero__product">
+
+            <!-- Decorative rings -->
+            <div class="hero__ring"></div>
+            <div class="hero__ring hero__ring--2"></div>
+
+            <!-- Glow -->
+            <div class="hero__glow"></div>
+
+            <!-- Sorvete real — Sorvete_Home.png com fundo removido -->
+            <img
+              src="images/produtos/sorvete-hero.png"
+              alt="Sorvete artesanal CreamCherry — taça de casquinha com pistache, kiwi e calda"
+              class="hero__icecream"
+              draggable="false"
+            >
+          </div><!-- /product -->
+
+          <!-- Floating flavour tags -->
+          <div class="float-tag float-tag--1"><span>🍓</span> Morango</div>
+          <div class="float-tag float-tag--2"><span>🍫</span> Nutella</div>
+          <div class="float-tag float-tag--3"><span>🍒</span> Cereja</div>
+          <div class="float-tag float-tag--4"><span>🥭</span> Manga</div>
+
+        </div><!-- /visual -->
+
+      </div><!-- /container -->
+
+      <!-- Scroll indicator -->
+      <div class="hero__scroll" aria-hidden="true">
+        <div class="hero__scroll-line"></div>
+        <span>scroll</span>
+      </div>
+
+      <!-- Wave removed — clean edge -->
+
+    </section><!-- /hero -->
+
+    <!-- PRODUTOS REAIS — Fotos dos produtos + categoria -->
+    <section class="section-pad products-real-section" id="categorias">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <span class="eyebrow">Nossos Produtos</span>
+          <h2 class="section-title">Feito com <em>ingredientes reais</em></h2>
+          <p class="section-desc">Cada produto é feito artesanalmente todos os dias. Veja o que preparamos para você.</p>
+        </div>
+
+        <!-- Product photo grid — 4 featured products with real photos -->
+        <div class="prod-real-grid">
+
+          <a href="pages/cardapio.html?cat=tradicionais" class="prod-real-card prod-real-card--large reveal reveal-delay-1">
+            <div class="prod-real-img">
+              <!--
+                FOTO REAL AQUI:
+                Substitua o src pelo caminho da imagem:
+                <img src="images/produtos/sorvete-baunilha.jpg" alt="Baunilha Clássica" loading="lazy">
+              -->
+              <div class="prod-real-placeholder">
+                <svg viewBox="0 0 120 120" fill="none" width="72">
+                  <circle cx="60" cy="60" r="55" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="6 4"/>
+                  <path d="M45 72 L60 90 L75 72 Z" fill="rgba(255,255,255,0.4)"/>
+                  <ellipse cx="60" cy="62" rx="18" ry="17" fill="white" opacity="0.7"/>
+                  <text x="60" y="108" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.6)" text-anchor="middle">Adicionar foto</text>
+                </svg>
+              </div>
+            </div>
+            <div class="prod-real-body">
+              <span class="prod-real-cat">Linha Tradicional</span>
+              <h3>Sorvetes Tradicionais</h3>
+              <p>Baunilha, Chocolate, Morango e muito mais. Sabores clássicos com ingredientes naturais.</p>
+              <span class="prod-real-cta">Ver linha <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <a href="pages/cardapio.html?cat=especiais" class="prod-real-card reveal reveal-delay-2">
+            <div class="prod-real-img">
+              <!--
+                FOTO REAL AQUI:
+                <img src="images/produtos/cherry-cheesecake.jpg" alt="Cherry Cheesecake" loading="lazy">
+              -->
+              <div class="prod-real-placeholder">
+                <svg viewBox="0 0 120 120" fill="none" width="56">
+                  <circle cx="60" cy="60" r="55" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="6 4"/>
+                  <path d="M45 72 L60 90 L75 72 Z" fill="rgba(255,255,255,0.4)"/>
+                  <ellipse cx="60" cy="62" rx="18" ry="17" fill="white" opacity="0.7"/>
+                  <text x="60" y="108" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.6)" text-anchor="middle">Adicionar foto</text>
+                </svg>
+              </div>
+            </div>
+            <div class="prod-real-body">
+              <span class="prod-real-cat">Linha Especial</span>
+              <h3>Especiais</h3>
+              <p>Cherry Cheesecake, Pistache Italiano, Nutella Trufado e Tiramisù.</p>
+              <span class="prod-real-cta">Ver linha <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <a href="pages/cardapio.html?cat=veganos" class="prod-real-card reveal reveal-delay-3">
+            <div class="prod-real-img" style="--card-accent:#2D8A4E">
+              <!--
+                FOTO REAL AQUI:
+                <img src="images/produtos/linha-vegana.jpg" alt="Linha Vegana" loading="lazy">
+              -->
+              <div class="prod-real-placeholder">
+                <svg viewBox="0 0 120 120" fill="none" width="56">
+                  <circle cx="60" cy="60" r="55" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="6 4"/>
+                  <path d="M45 72 L60 90 L75 72 Z" fill="rgba(255,255,255,0.4)"/>
+                  <ellipse cx="60" cy="62" rx="18" ry="17" fill="white" opacity="0.7"/>
+                  <text x="60" y="108" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.6)" text-anchor="middle">Adicionar foto</text>
+                </svg>
+              </div>
+            </div>
+            <div class="prod-real-body">
+              <span class="prod-real-cat" style="color:#2D8A4E">Linha Vegana</span>
+              <h3>Veganos</h3>
+              <p>100% à base de plantas. Cremosos, saborosos e sem abrir mão do sabor.</p>
+              <span class="prod-real-cta" style="color:#2D8A4E">Ver linha <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <a href="pages/cardapio.html?cat=gelattos" class="prod-real-card reveal reveal-delay-4">
+            <div class="prod-real-img" style="--card-accent:#1565C0">
+              <!--
+                FOTO REAL AQUI:
+                <img src="images/produtos/gelatto-pistacchio.jpg" alt="Gelatto Pistacchio" loading="lazy">
+              -->
+              <div class="prod-real-placeholder">
+                <svg viewBox="0 0 120 120" fill="none" width="56">
+                  <circle cx="60" cy="60" r="55" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="6 4"/>
+                  <path d="M45 72 L60 90 L75 72 Z" fill="rgba(255,255,255,0.4)"/>
+                  <ellipse cx="60" cy="62" rx="18" ry="17" fill="white" opacity="0.7"/>
+                  <text x="60" y="108" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,0.6)" text-anchor="middle">Adicionar foto</text>
+                </svg>
+              </div>
+            </div>
+            <div class="prod-real-body">
+              <span class="prod-real-cat" style="color:#1565C0">Gelattos</span>
+              <h3>Gelattos Italianos</h3>
+              <p>Receitas autênticas trazidas da Itália. Textura densa, sabor incomparável.</p>
+              <span class="prod-real-cta" style="color:#1565C0">Ver linha <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="reveal" style="text-align:center;margin-top:3rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a href="pages/cardapio.html" class="btn btn--red btn--lg">
+            Ver Cardápio Completo <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" rel="noopener" class="btn btn--outline btn--lg">
+            <i class="fa-solid fa-motorcycle"></i> Pedir pelo 99Food
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section class="diferenciais section-pad" id="diferenciais" style="background:var(--gray-50)">
+      <div class="container">
+        <div class="diferenciais__split">
+          <div class="diferenciais__content reveal-left">
+            <span class="eyebrow">Por que a CreamCherry?</span>
+            <h2 class="section-title">Feito com <em>paixão</em>,<br>entregue com amor</h2>
+            <p class="section-desc" style="margin-bottom:2.5rem">Desde o primeiro dia, nossa missão é criar sorvetes que façam você fechar os olhos e sorrir. Cada ingrediente escolhido com cuidado, cada receita testada até a perfeição.</p>
+            <div class="diferencial-list">
+              <div class="diferencial-item">
+                <div class="diferencial-icon"><i class="fa-solid fa-seedling"></i></div>
+                <div>
+                  <strong>Ingredientes Naturais</strong>
+                  <span>Sem corantes artificiais, sem conservantes. Só o que a natureza oferece de melhor.</span>
+                </div>
+              </div>
+              <div class="diferencial-item">
+                <div class="diferencial-icon"><i class="fa-solid fa-mortar-pestle"></i></div>
+                <div>
+                  <strong>Receitas Artesanais</strong>
+                  <span>Desenvolvidas por sorveteiros apaixonados com anos de experiência.</span>
+                </div>
+              </div>
+              <div class="diferencial-item">
+                <div class="diferencial-icon"><i class="fa-solid fa-snowflake"></i></div>
+                <div>
+                  <strong>Textura Perfeita</strong>
+                  <span>Processo exclusivo de congelamento lento para uma cremosidade incomparável.</span>
+                </div>
+              </div>
+              <div class="diferencial-item">
+                <div class="diferencial-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div>
+                  <strong>Delivery Expresso</strong>
+                  <span>Embalagem térmica especial. Seu sorvete chega perfeito, sem derreter.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="diferenciais__visual reveal-right">
+            <div class="visual-card visual-card--main">
+              <div class="vc-emoji"><i class="fa-solid fa-certificate" style="color:var(--red)"></i></div>
+              <div class="vc-text">
+                <strong>Ingredientes frescos</strong>
+                <span>selecionados toda semana</span>
+              </div>
+            </div>
+            <div class="visual-card visual-card--secondary">
+              <div class="vc-emoji"><i class="fa-solid fa-heart" style="color:#C8102E"></i></div>
+              <div class="vc-text">
+                <strong>+12.000 clientes</strong>
+                <span>satisfeitos em SP</span>
+              </div>
+            </div>
+            <div class="visual-card visual-card--tertiary">
+              <div class="vc-emoji"><i class="fa-solid fa-recycle" style="color:#2D8A4E"></i></div>
+              <div class="vc-text">
+                <strong>Embalagens sustentáveis</strong>
+                <span>recicláveis e biodegradáveis</span>
+              </div>
+            </div>
+            <div class="big-number">80<sup>+</sup></div>
+            <div class="big-number-label">sabores únicos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERY BANNER -->
+    <section class="delivery-banner" id="delivery">
+      <div class="delivery-banner__inner">
+        <div class="delivery-banner__content reveal">
+          <span class="eyebrow" style="color:rgba(255,255,255,0.7)">Delivery</span>
+          <h2>Chegou a hora do <em>sorvete</em></h2>
+          <p>Peça agora e receba em até 40 minutos com nossa embalagem térmica exclusiva. Disponível via 99Food e WhatsApp.</p>
+          <div class="delivery-apps">
+            <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido.%20Podem%20me%20ajudar%3F" target="_blank" class="delivery-app-btn">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" class="delivery-app-btn delivery-app-btn--outline">
+              <i class="fa-solid fa-motorcycle"></i> 99Food
+            </a>
+          </div>
+        </div>
+        <div class="delivery-banner__visual">
+          <div class="delivery-circle">
+            <div class="delivery-time">
+              <strong>~40</strong>
+              <span>minutos</span>
+            </div>
+          </div>
+          <div class="delivery-float"><i class="fa-solid fa-box-open"></i> Embalagem Térmica</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="depoimentos section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Depoimentos</span>
+          <h2 class="section-title">O que nossos clientes <em>dizem</em></h2>
+        </div>
+        <div class="depoimentos-grid">
+          <div class="depoimento-card reveal reveal-delay-1">
+            <div class="stars">★★★★★</div>
+            <p>"Melhor sorvete que já comi! A textura é incrível, parece que você está na Itália. O sabor de pistache é de outro mundo."</p>
+            <div class="depoimento-author">
+              <div class="author-avatar">M</div>
+              <div><strong>Mariana Costa</strong><span>São Paulo, SP</span></div>
+            </div>
+          </div>
+          <div class="depoimento-card depoimento-card--featured reveal reveal-delay-2">
+            <div class="stars">★★★★★</div>
+            <p>"Pedi delivery e chegou perfeito! O gelatto de baunilha com cereja é um pecado. Já virei cliente fiel da CreamCherry!"</p>
+            <div class="depoimento-author">
+              <div class="author-avatar">R</div>
+              <div><strong>Rafael Mendes</strong><span>Campinas, SP</span></div>
+            </div>
+          </div>
+          <div class="depoimento-card reveal reveal-delay-3">
+            <div class="stars">★★★★★</div>
+            <p>"Os sabores veganos são surpreendentes! Nunca pensei que sorvete sem leite poderia ser tão cremoso. Parabéns!"</p>
+            <div class="depoimento-author">
+              <div class="author-avatar">A</div>
+              <div><strong>Ana Lima</strong><span>Santos, SP</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FEATURED FLAVORS PREVIEW -->
+    <section class="section-pad" style="background:var(--cream)">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Destaques</span>
+          <h2 class="section-title">Sabores que fazem <em>querer mais</em></h2>
+          <p class="section-desc">Uma prévia do nosso cardápio. Ingredientes selecionados, receitas exclusivas.</p>
+        </div>
+        <div class="flavors-showcase">
+          <a href="pages/cardapio.html" class="flavor-showcase-card reveal reveal-delay-1" style="--card-bg:#FFF5E4">
+            <div class="fsc-img">🍦</div>
+            <div class="fsc-body">
+              <span class="fsc-cat">Tradicional</span>
+              <strong>Baunilha Clássica</strong>
+              <p>Fava de baunilha Bourbon importada, textura aveludada e sabor limpo.</p>
+              <span class="fsc-cta">Ver no cardápio <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+          <a href="pages/cardapio.html?cat=especiais" class="flavor-showcase-card reveal reveal-delay-2" style="--card-bg:#FFF0F2">
+            <div class="fsc-img">🍒</div>
+            <div class="fsc-body">
+              <span class="fsc-cat">Especial</span>
+              <strong>Cherry Cheesecake</strong>
+              <p>Cream cheese, calda de cereja ácida e base de biscoito. Uma sobremesa completa.</p>
+              <span class="fsc-cta">Ver no cardápio <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+          <a href="pages/cardapio.html?cat=gelattos" class="flavor-showcase-card reveal reveal-delay-3" style="--card-bg:#EFF6FF">
+            <div class="fsc-img">🫚</div>
+            <div class="fsc-body">
+              <span class="fsc-cat">Gelatto</span>
+              <strong>Pistacchio Siciliano</strong>
+              <p>Pasta IGP da Bronte (Sicília). O verdadeiro gelatto italiano em cada colherada.</p>
+              <span class="fsc-cta">Ver no cardápio <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+          <a href="pages/cardapio.html?cat=veganos" class="flavor-showcase-card reveal reveal-delay-4" style="--card-bg:#F0FAF3">
+            <div class="fsc-img">🥥</div>
+            <div class="fsc-body">
+              <span class="fsc-cat" style="color:#2D8A4E">Vegano</span>
+              <strong>Coco & Maracujá</strong>
+              <p>Base de leite de coco orgânico com polpa de maracujá fresco. 100% vegano.</p>
+              <span class="fsc-cta" style="color:#2D8A4E">Ver no cardápio <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+        <div style="text-align:center;margin-top:2.5rem" class="reveal">
+          <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" class="btn btn--red btn--lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            Pedir pelo 99Food
+          </a>
+          <a href="pages/cardapio.html" class="btn btn--outline" style="margin-left:1rem">
+            Ver Cardápio Completo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURSOS & TREINAMENTOS -->
+    <section class="section-pad cursos-section">
+      <div class="container">
+        <div class="cursos-split reveal">
+          <div class="cursos-content">
+            <span class="eyebrow">Cursos & Treinamentos</span>
+            <h2 class="section-title">Aprenda a fazer <em>sorvetes como um profissional</em></h2>
+            <p class="section-desc" style="margin-bottom:2rem">Da escolha dos ingredientes ao ponto perfeito do gelatto — compartilhamos nosso conhecimento com quem quer empreender ou simplesmente aprender a arte dos sorvetes artesanais.</p>
+            <div class="cursos-list">
+              <div class="curso-item">
+                <div class="curso-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div>
+                  <strong>Curso de Sorvetes Artesanais</strong>
+                  <span>Fundamentos, técnicas e receitas para iniciantes e profissionais.</span>
+                </div>
+              </div>
+              <div class="curso-item">
+                <div class="curso-icon"><i class="fa-solid fa-ice-cream"></i></div>
+                <div>
+                  <strong>Workshop de Gelattos Italianos</strong>
+                  <span>Técnica de churning lento, bases, sabores clássicos e contemporâneos.</span>
+                </div>
+              </div>
+              <div class="curso-item">
+                <div class="curso-icon"><i class="fa-solid fa-seedling"></i></div>
+                <div>
+                  <strong>Sorvetes Veganos & Sem Lactose</strong>
+                  <span>Bases de coco, amêndoa e aveia. Cremosidade sem ingredientes animais.</span>
+                </div>
+              </div>
+              <div class="curso-item">
+                <div class="curso-icon"><i class="fa-solid fa-store"></i></div>
+                <div>
+                  <strong>Treinamento para Franqueados</strong>
+                  <span>Programa completo de capacitação para novos parceiros CreamCherry.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+              <a href="https://wa.me/5511989582586?text=Ol%C3%A1!%20Tenho%20interesse%20nos%20cursos%20de%20sorvetes%20da%20CreamCherry!" target="_blank" class="btn btn--red btn--lg">
+                <i class="fa-brands fa-whatsapp"></i> Saber mais sobre os cursos
+              </a>
+            </div>
+          </div>
+          <div class="cursos-visual reveal-right">
+            <div class="curso-card-big">
+              <div class="ccb-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+              <h4>Próxima turma</h4>
+              <p>Sorvetes Artesanais — Nível Básico</p>
+              <div class="ccb-meta">
+                <span><i class="fa-solid fa-calendar"></i> Consulte disponibilidade</span>
+                <span><i class="fa-solid fa-clock"></i> 8 horas de aula</span>
+                <span><i class="fa-solid fa-location-dot"></i> São Paulo, SP</span>
+              </div>
+              <a href="https://wa.me/5511989582586?text=Quero%20me%20inscrever%20no%20curso%20de%20sorvetes!" target="_blank" class="btn btn--red" style="margin-top:1.5rem;width:100%;justify-content:center">
+                <i class="fa-brands fa-whatsapp"></i> Me inscrever
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+      <div class="newsletter__inner">
+        <div class="newsletter__content reveal">
+          <h2>Receba novidades <em>em primeira mão</em></h2>
+          <p>Cadastre-se e fique por dentro dos novos sabores, promoções exclusivas e muito mais.</p>
+          <div class="newsletter-form">
+            <input type="email" id="newsletterEmail" placeholder="Seu melhor e-mail" autocomplete="email">
+            <button class="btn btn--red" onclick="subscribeNewsletter()">Quero receber!</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <img src="images/logos/logo-branco-transparent.png" alt="CreamCherry Sobremesas" style="height:46px;width:auto;">
+        </div>
+        <p>Sorvetes e gelattos artesanais feitos com ingredientes selecionados e muito amor. Desde 2018 adoçando os momentos especiais de milhares de famílias brasileiras.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="pages/sobre.html">Sobre nós</a></li>
+          <li><a href="pages/sobre.html#historia">Nossa história</a></li>
+          <li><a href="pages/sobre.html#sustentabilidade">Sustentabilidade</a></li>
+          <li><a href="#">Trabalhe conosco</a></li>
+          <li><a href="#">Imprensa</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Produtos</h4>
+        <ul>
+          <li><a href="pages/cardapio.html?cat=tradicionais">Sorvetes Tradicionais</a></li>
+          <li><a href="pages/cardapio.html?cat=gelattos">Gelattos Artesanais</a></li>
+          <li><a href="pages/cardapio.html?cat=veganos">Linha Vegana</a></li>
+          <li><a href="pages/cardapio.html?cat=especiais">Especiais</a></li>
+          <li><a href="pages/cardapio.html">Cardápio Completo</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="pages/suporte.html">Central de Ajuda</a></li>
+          <li><a href="pages/suporte.html">Fale Conosco</a></li>
+          <li><a href="#">Política de Entrega</a></li>
+          <li><a href="#">Trocas e Devoluções</a></li>
+          <li><a href="pages/atacado.html">Encomendas Atacado</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Seja um Parceiro</h4>
+        <ul>
+          <li><a href="pages/franquias.html">Franquias CreamCherry</a></li>
+          <li><a href="#">Fornecedores</a></li>
+          <li><a href="#">Programa de Afiliados</a></li>
+        </ul>
+        <div class="footer__apps">
+          <h4>Peça pelo app</h4>
+          <a href="#" class="app-badge"><i class="fa-brands fa-apple"></i> App Store</a>
+          <a href="#" class="app-badge"><i class="fa-brands fa-google-play"></i> Google Play</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__mid">
+      <div class="footer__payment">
+        <span>Pagamento:</span>
+        <div class="payment-icons">
+          <!-- Visa -->
+          <div class="payment-badge" title="Visa">
+            <svg viewBox="0 0 48 16" xmlns="http://www.w3.org/2000/svg">
+              <text x="0" y="13" font-family="Arial" font-weight="900" font-size="14" fill="#1A1F71">VISA</text>
+            </svg>
+          </div>
+          <!-- Mastercard -->
+          <div class="payment-badge" title="Mastercard" style="gap:3px;display:flex;align-items:center;padding:3px 5px">
+            <svg viewBox="0 0 38 24" width="38" height="24" xmlns="http://www.w3.org/2000/svg">
+              <rect width="38" height="24" rx="4" fill="white"/>
+              <circle cx="14" cy="12" r="8" fill="#EB001B"/>
+              <circle cx="24" cy="12" r="8" fill="#F79E1B"/>
+              <path d="M19 6.27a8 8 0 0 1 0 11.46A8 8 0 0 1 19 6.27z" fill="#FF5F00"/>
+            </svg>
+          </div>
+          <!-- Pix -->
+          <div class="payment-badge payment-badge--pix" title="Pix">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 8l10.6 10.6-10.6 10.6L21.4 18.6z" fill="white"/>
+              <path d="M32 34.8l10.6 10.6L32 56l-10.6-10.6z" fill="white"/>
+              <path d="M8 32l10.6-10.6 10.6 10.6-10.6 10.6z" fill="white"/>
+              <path d="M34.8 32l10.6-10.6L56 32l-10.6 10.6z" fill="white"/>
+            </svg>
+          </div>
+          <!-- Elo -->
+          <div class="payment-badge" title="Elo" style="background:#FFD000">
+            <svg viewBox="0 0 48 20" xmlns="http://www.w3.org/2000/svg">
+              <text x="2" y="15" font-family="Arial" font-weight="900" font-size="13" fill="#00A0E0">elo</text>
+            </svg>
+          </div>
+          <!-- AmEx -->
+          <div class="payment-badge" title="American Express" style="background:#007BC1">
+            <svg viewBox="0 0 52 16" xmlns="http://www.w3.org/2000/svg">
+              <text x="0" y="13" font-family="Arial" font-weight="700" font-size="9.5" fill="white" letter-spacing="0.5">AMEX</text>
+            </svg>
+          </div>
+          <!-- VR -->
+          <div class="payment-badge payment-badge--vr" title="VR Benefícios">
+            <svg viewBox="0 0 36 20" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="20" rx="3" fill="#EF7D00"/>
+              <text x="4" y="14" font-family="Arial" font-weight="900" font-size="11" fill="white">VR</text>
+            </svg>
+          </div>
+          <!-- Alelo -->
+          <div class="payment-badge payment-badge--alelo" title="Alelo">
+            <svg viewBox="0 0 48 20" xmlns="http://www.w3.org/2000/svg">
+              <rect width="48" height="20" rx="3" fill="#EC1C24"/>
+              <text x="4" y="14" font-family="Arial" font-weight="700" font-size="10" fill="white">alelo</text>
+            </svg>
+          </div>
+          <!-- Dinheiro -->
+          <div class="payment-badge payment-badge--dinheiro" title="Dinheiro">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="5" width="22" height="14" rx="2" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="1" y1="9" x2="5" y2="9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="19" y1="9" x2="23" y2="9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="1" y1="15" x2="5" y2="15" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              <line x1="19" y1="15" x2="23" y2="15" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="footer__delivery-brands">
+        <span>Peça via:</span>
+        <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" class="del-brand" style="text-decoration:none">99Food</a>
+        <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" class="del-brand" style="text-decoration:none">WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© 2025 CreamCherry Sobremesas LTDA. CNPJ: 00.000.000/0001-00. Todos os direitos reservados.</p>
+      <div class="footer__legal">
+        <a href="#">Termos de Uso</a>
+        <a href="#">Privacidade</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido.%20Podem%20me%20ajudar%3F" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+  <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/forms.js"></script>
+
+  <!-- VLibras — Acessibilidade para Libras / Gov.br -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <!-- Hand Talk — Acessibilidade adicional (opcional, remova se não tiver contrato) -->
+  <!-- <script src="https://plugin.handtalk.me/web/latest/handtalk.min.js"></script>
+  <script>var ht = new HT({ token: "SEU_TOKEN_AQUI" });</script> -->
+</body>
+</html>

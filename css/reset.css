@@ -1,0 +1,136 @@
+/* ========================================
+   CREAM CHERRY — Reset & Base
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: hidden;
+  /* NOTE: overflow-x on html (not body) — avoids clipping fixed elements on mobile */
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--gray-800);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  max-width: 100vw;
+  overflow-x: clip; /* clip = no scroll bar, but keeps position:fixed children working */
+}
+
+img  { max-width: 100%; display: block; }
+a    { text-decoration: none; color: inherit; }
+ul   { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input, textarea { font-family: inherit; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--gray-100); }
+::-webkit-scrollbar-thumb  { background: var(--red); border-radius: 3px; }
+
+/* ── Layout Utilities ── */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-pad { padding: var(--space-2xl) 0; }
+
+/* ── Section Labels ── */
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--gray-800);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.section-title em { font-style: italic; color: var(--red); }
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--gray-600);
+  max-width: 560px;
+  line-height: 1.8;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.section-header .section-desc { margin: 0 auto; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--dur-base) var(--ease-out);
+  cursor: pointer;
+  white-space: nowrap;
+  border: 2px solid transparent;
+}
+
+.btn--red {
+  background: var(--red);
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(200,16,46,0.3);
+}
+.btn--red:hover {
+  background: var(--red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200,16,46,0.4);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--red);
+  border-color: var(--red);
+}
+.btn--outline:hover {
+  background: var(--red-pale);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  background: rgba(255,255,255,0.15);
+  color: var(--white);
+  border-color: rgba(255,255,255,0.35);
+  backdrop-filter: blur(4px);
+}
+.btn--ghost:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+}
+
+.btn--lg { padding: 0.9rem 2.2rem; font-size: 1rem; }
+.btn--sm { padding: 0.45rem 1rem; font-size: 0.82rem; }
+
+/* ── Global mobile overflow safety ── */
+main,
+section,
+footer {
+  max-width: 100vw;
+  overflow-x: hidden;
+}

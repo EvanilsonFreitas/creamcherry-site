@@ -1,0 +1,231 @@
+/* ========================================
+   CREAM CHERRY — Footer
+   ======================================== */
+.footer {
+  background: var(--gray-800);
+  color: rgba(255,255,255,0.75);
+}
+
+/* ── Top ── */
+.footer__top {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-xl) 1.5rem var(--space-lg);
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr 1.2fr;
+  gap: 3rem;
+}
+
+/* Brand col */
+.footer__brand { max-width: 280px; }
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.footer-logo-icon { font-size: 1.6rem; }
+
+.footer__logo span:last-child {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: white;
+}
+
+.footer__brand p {
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 1.5rem;
+}
+
+.footer__social {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.footer__social a {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all var(--dur-base) var(--ease-out);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer__social a:hover {
+  background: var(--red);
+  color: white;
+  border-color: var(--red);
+  transform: translateY(-3px);
+}
+
+/* Link cols */
+.footer__col h4 {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 1.25rem;
+}
+
+.footer__col ul { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.footer__col ul li a {
+  font-size: 0.87rem;
+  color: rgba(255,255,255,0.55);
+  transition: all var(--dur-fast);
+}
+
+.footer__col ul li a:hover {
+  color: white;
+  padding-left: 4px;
+}
+
+/* App badges */
+.footer__apps { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.app-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all var(--dur-base) var(--ease-out);
+  background: rgba(255,255,255,0.05);
+}
+
+.app-badge:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.3);
+  transform: translateX(3px);
+}
+
+.app-badge i { font-size: 1.1rem; }
+
+/* ── Mid bar ── */
+.footer__mid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer__payment,
+.footer__delivery-brands {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+}
+
+.payment-icons {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Card brand badges */
+.payment-badge {
+  height: 28px;
+  min-width: 44px;
+  border-radius: 5px;
+  background: white;
+  padding: 3px 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s;
+}
+.payment-badge:hover { transform: translateY(-2px); }
+.payment-badge svg   { height: 18px; width: auto; display: block; }
+
+.payment-badge--pix   { background: #32BCAD; padding: 3px 8px; }
+.payment-badge--pix svg { height: 14px; }
+.payment-badge--vr    { background: white; }
+.payment-badge--alelo { background: white; }
+.payment-badge--dinheiro { background: rgba(255,255,255,0.1); }
+.payment-badge--dinheiro svg { height: 16px; }
+
+/* Legacy fallback */
+.payment-icon {
+  padding: 0.28rem 0.65rem;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.08);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+}
+
+.del-brand {
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-sm);
+  background: rgba(200,16,46,0.2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255,200,210,0.9);
+  letter-spacing: 0.03em;
+}
+
+/* ── Bottom ── */
+.footer__bottom {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer__bottom p {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+}
+
+.footer__legal {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer__legal a {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+  transition: color var(--dur-fast);
+}
+
+.footer__legal a:hover { color: white; }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .footer__top { grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+  .footer__brand { max-width: 100%; grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+  .footer__top { grid-template-columns: 1fr 1fr; }
+  .footer__mid, .footer__bottom { flex-direction: column; align-items: flex-start; }
+}

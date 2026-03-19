@@ -1,0 +1,403 @@
+/* ========================================
+   CREAM CHERRY — Header
+   ======================================== */
+
+/* ── Announcement Bar ── */
+.announcement-bar {
+  background: var(--red-dark);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 500;
+  height: 36px;
+  overflow: hidden;
+  max-width: 100vw;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+.announcement-track {
+  white-space: nowrap;
+  animation: marquee 28s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ══════════════════════════════════════════
+   HEADER — transparent at top, white on scroll
+   ══════════════════════════════════════════ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  /* TOP STATE: fully transparent — shows the red hero through */
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,0.0);
+
+  /* Use ::before for blur so we avoid creating a stacking context on the header itself */
+  transition:
+    background      0.5s cubic-bezier(0.22,1,0.36,1),
+    border-color    0.5s cubic-bezier(0.22,1,0.36,1),
+    box-shadow      0.5s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Frosted glass layer — pseudo-element so header has NO stacking context */
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  background: transparent;
+  transition:
+    backdrop-filter 0.5s cubic-bezier(0.22,1,0.36,1),
+    background      0.5s cubic-bezier(0.22,1,0.36,1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* SCROLLED STATE: white frosted glass */
+.header.scrolled {
+  background: transparent; /* let ::before handle the color */
+  border-bottom: 1px solid var(--gray-100);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+}
+
+.header.scrolled::before {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.96);
+}
+
+/* Bottom gradient line — transparent at edges, subtle white glow at center */
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,0)    0%,
+    rgba(255,255,255,0)    15%,
+    rgba(255,255,255,0.25) 35%,
+    rgba(255,255,255,0.45) 50%,
+    rgba(255,255,255,0.25) 65%,
+    rgba(255,255,255,0)    85%,
+    rgba(255,255,255,0)    100%
+  );
+  opacity: 1;
+  transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1);
+  pointer-events: none;
+}
+
+/* Hide gradient line when scrolled (border-bottom replaces it) */
+.header.scrolled::after { opacity: 0; }
+
+/* ── Nav links: white at top, dark on scroll ── */
+.nav__link {
+  padding: 0.42rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.87rem;
+  font-weight: 500;
+  /* default: white (sits over red hero) */
+  color: rgba(255,255,255,0.90);
+  transition: color 0.4s, background 0.4s;
+  white-space: nowrap;
+}
+.nav__link:hover {
+  color: white;
+  background: rgba(255,255,255,0.18);
+}
+.nav__link.active {
+  color: white;
+  background: rgba(255,255,255,0.22);
+}
+
+/* Scrolled nav links: dark */
+.header.scrolled .nav__link {
+  color: var(--gray-600);
+}
+.header.scrolled .nav__link:hover,
+.header.scrolled .nav__link.active {
+  color: var(--red);
+  background: var(--red-pale);
+}
+
+/* ── Action buttons: white outlines at top ── */
+.header__actions .btn--outline {
+  border-color: rgba(255,255,255,0.7);
+  color: white;
+  background: transparent;
+  transition: all 0.4s;
+}
+.header__actions .btn--outline:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: white;
+}
+
+/* Scrolled: restore normal outline style */
+.header.scrolled .header__actions .btn--outline {
+  border-color: var(--red);
+  color: var(--red);
+  background: transparent;
+}
+.header.scrolled .header__actions .btn--outline:hover {
+  background: var(--red-pale);
+}
+
+/* Hamburger lines: white at top */
+.hamburger span {
+  width: 22px; height: 2px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 2px;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s, background 0.4s;
+}
+.header.scrolled .hamburger span { background: var(--gray-800); }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* ── Inner ── */
+.header__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: height 0.45s cubic-bezier(0.22,1,0.36,1);
+}
+.header.scrolled .header__inner { height: 58px; }
+
+/* ── Logo: two overlapping images, opacity crossfade on scroll ── */
+.header__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  position: relative;
+  height: 46px;
+  min-width: 180px;  /* reserve space for full logo width */
+}
+
+/* Both logos stacked — absolutely positioned, crossfade via opacity */
+.logo-white,
+.logo-color {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+  display: block;
+  transition:
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    height  0.4s  cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* TOP (scroll = 0): white logo visible, coloured logo hidden */
+.logo-white { opacity: 1; }
+.logo-color { opacity: 0; }
+
+/* SCROLLED: coloured logo visible, white logo hidden; both slightly smaller */
+.header.scrolled .logo-white { opacity: 0; }
+.header.scrolled .logo-color { opacity: 1; height: 36px; }
+
+/* logo-img fallback hidden */
+.logo-img,
+.logo-img-compact { display: none !important; }
+
+/* ── Nav wrapper ── */
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  flex: 1;
+  justify-content: center;
+}
+
+/* ── Actions ── */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Red CTA button stays red always */
+.header__actions .btn--red {
+  background: var(--red);
+  color: white;
+  box-shadow: 0 4px 14px rgba(200,16,46,0.35);
+}
+.header__actions .btn--red:hover {
+  background: var(--red-dark);
+  transform: translateY(-2px);
+}
+
+/* ── Hamburger button ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  margin-left: auto;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.hamburger:hover { background: rgba(255,255,255,0.12); }
+.header.scrolled .hamburger:hover { background: var(--gray-100); }
+
+/* ══════════════════════════════════════════
+   MOBILE MENU — slides from right, full fix
+   ══════════════════════════════════════════ */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(360px, 88vw);
+  background: #ffffff;
+  z-index: 99999;              /* highest — above VLibras and everything */
+  padding: 5rem 1.75rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* CLOSED: fully off-screen + invisible + non-interactive */
+  transform: translateX(110%);  /* extra 10% ensures no edge bleed */
+  visibility: hidden;           /* completely removed from accessibility tree */
+  pointer-events: none;         /* no accidental taps */
+  opacity: 0;
+
+  transition:
+    transform  0.45s cubic-bezier(0.22,1,0.36,1),
+    visibility 0s   linear 0.45s,     /* delay visibility until after slide-out */
+    opacity    0.3s cubic-bezier(0.22,1,0.36,1),
+    box-shadow 0.45s cubic-bezier(0.22,1,0.36,1);
+
+  will-change: transform;
+  box-shadow: none;
+}
+
+/* OPEN: slide in, make visible */
+.mobile-menu.open {
+  transform: translateX(0);
+  visibility: visible;           /* instant on open */
+  pointer-events: all;
+  opacity: 1;
+  box-shadow: -8px 0 48px rgba(0,0,0,0.22);
+
+  transition:
+    transform  0.45s cubic-bezier(0.22,1,0.36,1),
+    visibility 0s   linear 0s,       /* no delay on open */
+    opacity    0.25s cubic-bezier(0.22,1,0.36,1),
+    box-shadow 0.45s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Overlay */
+.mobile-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;        /* explicit size, not just inset */
+  min-width: 100%; min-height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 99998;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  display: none;                       /* fully removed from render tree when inactive */
+  transition:
+    opacity    0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.mobile-overlay.show {
+  display: block;                      /* re-enter render tree immediately */
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+}
+
+/* Body lock — prevents background scroll on iOS/Android
+   IMPORTANT: Do NOT add position:fixed here — it causes scroll position jump */
+body.menu-open {
+  overflow: hidden;
+  touch-action: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Close button */
+.mobile-menu__close {
+  position: absolute;
+  top: 1.2rem; right: 1.2rem;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--gray-100);
+  font-size: 1rem; color: var(--gray-600);
+  cursor: pointer; border: none;
+  transition: background 0.2s;
+}
+.mobile-menu__close:hover { background: var(--gray-200); }
+
+.mobile-menu__logo { margin-bottom: 2rem; }
+.mobile-menu__logo img { max-width: 180px; height: auto; display: block; }
+
+.mobile-menu__nav { display: flex; flex-direction: column; width: 100%; }
+.mobile-menu__nav a {
+  font-size: 1.15rem; font-weight: 600; color: var(--gray-800);
+  padding: 0.9rem 0; border-bottom: 1px solid var(--gray-100);
+  display: flex; align-items: center; gap: 0.75rem;
+  text-decoration: none;
+  transition: color 0.2s, padding-left 0.2s;
+}
+.mobile-menu__nav a i {
+  width: 20px; text-align: center; color: var(--gray-400);
+  font-size: 0.9rem; flex-shrink: 0; transition: color 0.2s;
+}
+.mobile-menu__nav a:hover { color: var(--red); padding-left: 0.4rem; }
+.mobile-menu__nav a:hover i { color: var(--red); }
+
+.mobile-menu__social {
+  display: flex; gap: 1rem; padding-top: 1.5rem;
+  font-size: 1.3rem; color: var(--gray-400); margin-top: auto;
+}
+.mobile-menu__social a:hover { color: var(--red); }
+
+/* ── Breakpoints ── */
+@media (max-width: 960px) {
+  .header__nav, .header__actions { display: none; }
+  .hamburger { display: flex; }
+}
+@media (max-width: 480px) {
+  .mobile-menu { padding: 4.5rem 1.25rem 2rem; }
+}
+
+
+/* Pages that don't start with the red hero need the white header from the start */
+/* ── Non-hero pages: always white from the start ── */
+/* ── Non-hero pages: white header from start ── */
+
+/* Logo: on non-hero pages, show coloured logo from the start (hide white) */
+/* On scroll, keep coloured logo */
+
+/* Nav: dark links on white background */
+
+/* Hamburger: dark lines */
+
+/* Action buttons */
+
