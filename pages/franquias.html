@@ -455,24 +455,6 @@
   <script src="../js/config.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/forms.js"></script>
-  <script>
-    function submitFranquia() {
-      const fields = ['fName','fEmail','fPhone','fCity','fCapital','fMessage'];
-      const data = {};
-      for (const f of fields) {
-        const val = document.getElementById(f).value.trim();
-        if (!val) { showToast('⚠️ Preencha todos os campos!'); return; }
-        data[f] = val;
-      }
-      fetch(`${window.CREAM_API}/api/franquia`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).catch(() => {});
-      showToast('✅ Proposta enviada! Retornaremos em breve.');
-      fields.forEach(f => document.getElementById(f).value = '');
-    }
-  </script>
   <!-- VLibras Acessibilidade -->
   <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
