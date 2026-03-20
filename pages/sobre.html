@@ -13,12 +13,20 @@
   <link rel="stylesheet" href="../css/sections.css">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/animations.css">
+
+  <!-- Favicon -->
+  <link rel="icon"             type="image/x-icon"    href="../images/favicon.ico">
+  <link rel="icon"             type="image/png" sizes="32x32"  href="../images/favicon-32.png">
+  <link rel="icon"             type="image/png" sizes="16x16"  href="../images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180"                 href="../images/favicon-180.png">
+  <meta name="theme-color" content="#C8102E">
+
   <style>
-    /* Page hero */
+    /* ── Page Hero ── */
     .page-hero {
       background: var(--red);
       margin-top: 0;
-      padding-top: calc(var(--header-h) + 36px + 3.5rem);
+      padding-top: calc(var(--header-h) + 3.5rem);
       padding-bottom: 7rem;
       padding-left: 0;
       padding-right: 0;
@@ -26,151 +34,141 @@
       overflow: hidden;
       text-align: center;
     }
-    .page-hero::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size:28px 28px; }
+    .page-hero::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background-image:radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size:28px 28px;
+    }
     .page-hero__content { position:relative; z-index:2; }
-    .page-hero h1 { font-family:var(--font-display); font-size:clamp(2.6rem,5vw,4.5rem); font-weight:900; color:white; margin:.5rem 0; line-height:1.15; }
+    .page-hero h1 {
+      font-family:var(--font-display);
+      font-size:clamp(2.6rem,5vw,4.5rem);
+      font-weight:900; color:white;
+      margin:.5rem 0; line-height:1.15;
+    }
     .page-hero h1 em { font-style:italic; color:#FFD0D8; }
-    .page-hero p { color:rgba(255,255,255,0.82); font-size:1.05rem; max-width:560px; margin:0 auto; line-height:1.7; }
+    .page-hero p { color:rgba(255,255,255,0.82); font-size:1.05rem; max-width:560px; margin:.75rem auto 0; line-height:1.7; }
     .page-hero__wave { position:absolute; bottom:-1px; left:0; right:0; line-height:0; }
     .page-hero__wave svg { width:100%; height:60px; display:block; }
 
-    /* Historia split */
+    /* ── Historia split ── */
     .historia-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-      padding: var(--space-2xl) 0;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:5rem;
+      align-items:center;
+      padding:var(--space-2xl) 0;
     }
-
-    .historia-content h2 { font-family:var(--font-display); font-size:clamp(2rem,3.5vw,2.8rem); font-weight:900; color:var(--gray-800); margin-bottom:1.5rem; line-height:1.2; }
+    .historia-content h2 {
+      font-family:var(--font-display);
+      font-size:clamp(2rem,3.5vw,2.8rem);
+      font-weight:900; color:var(--gray-800);
+      margin-bottom:1.5rem; line-height:1.2;
+    }
     .historia-content h2 em { font-style:italic; color:var(--red); }
     .historia-content p { font-size:.96rem; color:var(--gray-600); line-height:1.85; margin-bottom:1.2rem; }
 
-    /* Timeline */
-    .timeline { display:flex; flex-direction:column; gap:0; margin-top:2.5rem; }
+    /* ── Timeline ── */
+    .timeline { display:flex; flex-direction:column; gap:0; margin-top:1rem; }
     .tl-item {
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      gap: 1.2rem;
-      position: relative;
-      padding-bottom: 2rem;
+      display:grid;
+      grid-template-columns:72px 1fr;
+      gap:1.2rem;
+      position:relative;
+      padding-bottom:2rem;
     }
-    .tl-item:last-child { padding-bottom: 0; }
+    .tl-item:last-child { padding-bottom:0; }
     .tl-item::before {
-      content: '';
-      position: absolute;
-      left: 31px;
-      top: 40px;
-      bottom: 0;
-      width: 2px;
-      background: var(--gray-100);
+      content:'';
+      position:absolute;
+      left:35px; top:44px; bottom:0;
+      width:2px;
+      background:linear-gradient(to bottom, var(--red-pale), transparent);
     }
-    .tl-item:last-child::before { display: none; }
+    .tl-item:last-child::before { display:none; }
     .tl-dot {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      background: var(--red-pale);
-      border: 2px solid rgba(200,16,46,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      z-index: 1;
+      width:72px; height:72px;
+      border-radius:50%;
+      background:var(--red);
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0; z-index:1;
+      box-shadow:0 4px 16px rgba(200,16,46,0.3);
     }
     .tl-dot strong {
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      font-weight: 900;
-      color: var(--red);
-      text-align: center;
-      line-height: 1.1;
+      font-family:var(--font-display);
+      font-size:0.88rem; font-weight:900;
+      color:white; text-align:center; line-height:1.1;
     }
-    .tl-body { padding-top: 1rem; }
-    .tl-body h4 { font-weight:700; color:var(--gray-800); margin-bottom:.3rem; font-size:.95rem; }
-    .tl-body p  { font-size:.85rem; color:var(--gray-600); line-height:1.6; }
+    .tl-body { padding-top:1.1rem; }
+    .tl-body h4 { font-weight:700; color:var(--gray-800); margin-bottom:.3rem; font-size:1rem; }
+    .tl-body p  { font-size:.85rem; color:var(--gray-600); line-height:1.65; }
 
-    /* Founders */
-    .founders-section { padding:var(--space-xl) 0; background:var(--gray-50); }
-    .founders-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 3rem;
+    /* ── Team ── */
+    .team-section { padding:var(--space-xl) 0; background:var(--gray-50); }
+    .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3rem; }
+    .team-card {
+      background:var(--white); border-radius:var(--radius-xl);
+      padding:2rem; text-align:center;
+      box-shadow:0 4px 20px rgba(0,0,0,0.07);
+      transition:transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
     }
-    .founder-card {
-      background: var(--white);
-      border-radius: var(--radius-xl);
-      padding: 2rem;
-      text-align: center;
-      border: 1.5px solid var(--gray-100);
-      box-shadow: var(--shadow-sm);
-      transition: all var(--dur-base) var(--ease-out);
+    .team-card:hover { transform:translateY(-6px); box-shadow:0 12px 32px rgba(0,0,0,0.12); }
+    .team-avatar {
+      width:88px; height:88px; border-radius:50%;
+      margin:0 auto 1.25rem;
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--font-display); font-size:2rem; font-weight:900; color:white;
     }
-    .founder-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-md); }
-    .founder-avatar {
-      width: 88px; height: 88px;
-      border-radius: 50%;
-      margin: 0 auto 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 900;
-      color: white;
-    }
-    .founder-card h4 { font-family:var(--font-display); font-size:1.1rem; font-weight:900; color:var(--gray-800); margin-bottom:.25rem; }
-    .founder-card .role { font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--red); margin-bottom:.75rem; }
-    .founder-card p { font-size:.85rem; color:var(--gray-600); line-height:1.65; }
+    .team-card h4 { font-family:var(--font-display); font-size:1.1rem; font-weight:900; color:var(--gray-800); margin-bottom:.25rem; }
+    .team-card .role { font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--red); margin-bottom:.75rem; display:block; }
+    .team-card p { font-size:.85rem; color:var(--gray-600); line-height:1.65; }
 
-    /* MVP/Values */
+    /* ── Valores ── */
     .values-section { padding:var(--space-xl) 0; background:var(--white); }
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    .value-card {
-      border-radius: var(--radius-xl);
-      padding: 2rem;
-      border: 1.5px solid var(--gray-100);
-    }
+    .values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3rem; }
+    .value-card { border-radius:var(--radius-xl); padding:2rem; border:1.5px solid var(--gray-100); }
     .value-card:nth-child(2) { background:var(--red); border-color:var(--red); }
     .value-card:nth-child(2) h4,
     .value-card:nth-child(2) p { color:white; }
     .value-card:nth-child(2) .value-icon { background:rgba(255,255,255,0.15); color:white; }
     .value-icon {
-      width:52px; height:52px;
-      border-radius:var(--radius-md);
+      width:52px; height:52px; border-radius:var(--radius-md);
       background:var(--red-pale);
       display:flex; align-items:center; justify-content:center;
-      font-size:1.2rem;
-      color:var(--red);
-      margin-bottom:1.25rem;
+      font-size:1.2rem; color:var(--red); margin-bottom:1.25rem;
     }
     .value-card h4 { font-family:var(--font-display); font-size:1.15rem; font-weight:900; color:var(--gray-800); margin-bottom:.5rem; }
     .value-card p  { font-size:.87rem; color:var(--gray-600); line-height:1.7; }
 
-    /* Sustainability — focused on packaging */
-    .suste-section { padding:var(--space-xl) 0; background:var(--gray-50); }
-    .suste-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
+    /* ── Endereço ── */
+    .address-section { padding:var(--space-xl) 0; background:var(--gray-50); }
+    .address-card {
+      background:var(--white); border-radius:var(--radius-xl);
+      padding:2.5rem; box-shadow:0 4px 20px rgba(0,0,0,0.07);
+      display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center;
     }
+    .address-info h3 { font-family:var(--font-display); font-size:1.6rem; font-weight:900; color:var(--gray-800); margin-bottom:1.25rem; }
+    .address-item { display:flex; align-items:flex-start; gap:.9rem; margin-bottom:1rem; }
+    .address-item i { color:var(--red); font-size:1rem; margin-top:.15rem; flex-shrink:0; width:18px; }
+    .address-item span { font-size:.92rem; color:var(--gray-700); line-height:1.5; }
+    .address-map {
+      border-radius:var(--radius-lg); overflow:hidden;
+      height:260px; background:var(--gray-100);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .address-map iframe { width:100%; height:100%; border:none; }
+
+    /* ── Sustentabilidade ── */
+    .suste-section { padding:var(--space-xl) 0; background:var(--white); }
+    .suste-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
     .suste-card {
-      background:var(--white);
-      border-radius:var(--radius-lg);
-      padding:1.8rem;
-      border:1.5px solid var(--gray-100);
-      display:flex; flex-direction:column; gap:.75rem;
+      background:var(--gray-50); border-radius:var(--radius-lg);
+      padding:1.8rem; display:flex; flex-direction:column; gap:.75rem;
     }
     .suste-card__icon {
-      width:48px; height:48px;
-      border-radius:var(--radius-md);
+      width:48px; height:48px; border-radius:var(--radius-md);
       background:#F0FAF3;
       display:flex; align-items:center; justify-content:center;
       font-size:1.1rem; color:#2D8A4E;
@@ -179,77 +177,76 @@
     .suste-card p  { font-size:.85rem; color:var(--gray-600); line-height:1.6; }
 
     @media(max-width:900px){
-      .historia-split,.founders-grid,.values-grid,.suste-cards{ grid-template-columns:1fr; }
+      .historia-split,.values-grid,.suste-cards { grid-template-columns:1fr; }
+      .team-grid { grid-template-columns:1fr; }
+      .address-card { grid-template-columns:1fr; }
+      .address-map { height:220px; }
     }
     @media(max-width:600px){
-      .founders-grid{ grid-template-columns:1fr 1fr; }
+      .team-grid { grid-template-columns:1fr; }
     }
   </style>
-  <!-- ═══ FAVICON ═══ -->
-  <link rel="icon"             type="image/x-icon"    href="../images/favicon.ico">
-  <link rel="icon"             type="image/png" sizes="32x32"  href="../images/favicon-32.png">
-  <link rel="icon"             type="image/png" sizes="16x16"  href="../images/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180"                 href="../images/favicon-180.png">
-  <meta name="theme-color" content="#C8102E">
 </head>
 <body>
 
-  <div class="announcement-bar">
-    <div class="announcement-track">
-      <span>🍒 Desde 2018 adoçando momentos &nbsp;·&nbsp; Artesanal do início ao fim &nbsp;·&nbsp; Com amor em cada receita &nbsp;·&nbsp; 🍒 Desde 2018 adoçando momentos &nbsp;·&nbsp; Artesanal do início ao fim &nbsp;·&nbsp; Com amor em cada receita</span>
+  <div class="site-header-wrap">
+    <div class="announcement-bar">
+      <div class="announcement-track">
+        <span>🍒 Desde 1990 adoçando momentos &nbsp;·&nbsp; Família Freitas com amor em cada colherada &nbsp;·&nbsp; Referência em sorvetes artesanais em SP &nbsp;·&nbsp; 🍒 Desde 1990 adoçando momentos &nbsp;·&nbsp; Família Freitas com amor em cada colherada &nbsp;·&nbsp; Referência em sorvetes artesanais em SP</span>
+      </div>
+    </div>
+
+    <header class="header" id="header">
+      <div class="header__inner">
+        <a href="../index.html" class="header__logo">
+          <img src="../images/logos/logo-branco-transparent.png"  alt="CreamCherry" class="logo-white">
+          <img src="../images/logos/logo-original-transparent.png" alt="CreamCherry" class="logo-color">
+        </a>
+        <nav class="header__nav">
+          <a href="../index.html"    class="nav__link">Home</a>
+          <a href="sobre.html"       class="nav__link active">Sobre nós</a>
+          <a href="cardapio.html"    class="nav__link">Cardápio</a>
+          <a href="atacado.html"     class="nav__link">Atacado</a>
+          <a href="franquias.html"   class="nav__link">Franquias</a>
+          <a href="suporte.html"     class="nav__link">Suporte</a>
+        </nav>
+        <div class="header__actions">
+          <a href="cardapio.html" class="btn btn--outline">Ver Cardápio</a>
+          <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" rel="noopener" class="btn btn--red">Pedir Agora</a>
+        </div>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </header>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu__close" id="mobileClose"><i class="fa-solid fa-xmark"></i></button>
+    <div class="mobile-menu__logo"><img src="../images/logos/logo-original-transparent.png" alt="CreamCherry" style="height:44px;width:auto;"></div>
+    <nav class="mobile-menu__nav">
+      <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="sobre.html"><i class="fa-solid fa-circle-info"></i> Sobre nós</a>
+      <a href="cardapio.html"><i class="fa-solid fa-ice-cream"></i> Cardápio</a>
+      <a href="atacado.html"><i class="fa-solid fa-box-open"></i> Atacado</a>
+      <a href="franquias.html"><i class="fa-solid fa-handshake"></i> Franquias</a>
+      <a href="suporte.html"><i class="fa-solid fa-headset"></i> Suporte</a>
+    </nav>
+    <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" class="btn btn--red btn--lg" style="margin-top:2rem;width:100%;justify-content:center;">Pedir Agora</a>
+    <div class="mobile-menu__social">
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="#"><i class="fa-brands fa-facebook"></i></a>
     </div>
   </div>
 
-  <header class="header" id="header">
-    <div class="header__inner">
-      <a href="../index.html" class="header__logo">
-        <img src="../images/logos/logo-branco-transparent.png"  alt="CreamCherry" class="logo-white">
-        <img src="../images/logos/logo-original-transparent.png" alt="CreamCherry" class="logo-color">
-      </a>
-      <nav class="header__nav">
-        <a href="../index.html"        class="nav__link">Home</a>
-        <a href="sobre.html"           class="nav__link active">Sobre nós</a>
-        <a href="cardapio.html"        class="nav__link">Cardápio</a>
-        <a href="atacado.html"         class="nav__link">Atacado</a>
-        <a href="franquias.html"       class="nav__link">Franquias</a>
-        <a href="suporte.html"         class="nav__link">Suporte</a>
-      </nav>
-      <div class="header__actions">
-        <a href="cardapio.html" class="btn btn--outline">Ver Cardápio</a>
-        <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" class="btn btn--red">Pedir Agora</a>
-      </div>
-      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-    </div>
-    
-  </header>
-
-  <!-- Mobile menu — OUTSIDE header to avoid stacking context trap -->
-  <div class="mobile-menu" id="mobileMenu">
-      <button class="mobile-menu__close" id="mobileClose"><i class="fa-solid fa-xmark"></i></button>
-      <div class="mobile-menu__logo"><img src="../images/logos/logo-original-transparent.png" alt="CreamCherry" style="height:44px;width:auto;"></div>
-      <nav class="mobile-menu__nav">
-        <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="sobre.html"><i class="fa-solid fa-circle-info"></i> Sobre nós</a>
-        <a href="cardapio.html"><i class="fa-solid fa-ice-cream"></i> Cardápio</a>
-        <a href="atacado.html"><i class="fa-solid fa-box-open"></i> Atacado</a>
-        <a href="franquias.html"><i class="fa-solid fa-handshake"></i> Franquias</a>
-        <a href="suporte.html"><i class="fa-solid fa-headset"></i> Suporte</a>
-      </nav>
-      <a href="https://wa.me/5511989582586" target="_blank" class="btn btn--red btn--lg" style="margin-top:2rem;width:100%;justify-content:center;">Pedir Agora</a>
-      <div class="mobile-menu__social">
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-      </div>
-    </div>
-
   <main>
 
+    <!-- HERO -->
     <section class="page-hero">
       <div class="container page-hero__content">
         <span class="eyebrow" style="color:rgba(255,255,255,0.75)">Nossa História</span>
-        <h1>Feitos com <em>paixão</em> desde 2018</h1>
-        <p>Da cozinha de casa para o coração de milhares de clientes em São Paulo. Conheça a história por trás de cada colherada.</p>
+        <h1>Uma família, uma <em>paixão</em></h1>
+        <p>Mais de 30 anos transformando ingredientes simples em momentos inesquecíveis. Conheça a história por trás de cada colherada.</p>
       </div>
       <div class="page-hero__wave">
         <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/></svg>
@@ -262,46 +259,48 @@
         <div class="historia-split">
           <div class="historia-content reveal-left">
             <span class="eyebrow">Como tudo começou</span>
-            <h2>Uma receita de família que <em>virou paixão</em></h2>
-            <p>A CreamCherry nasceu de um sonho simples: fazer o sorvete mais gostoso que São Paulo já provou. Em 2018, Carlos e Ana Ferreira transformaram a cozinha de casa em uma pequena sorveteria no bairro da Mooca.</p>
-            <p>A receita da baunilha, guardada há gerações na família, foi o ponto de partida. Com técnicas aprendidas durante uma viagem à Itália e ingredientes rigorosamente selecionados, o casal criou os primeiros gelattos artesanais que rapidamente conquistaram o bairro.</p>
-            <p>Hoje, mais de 6 anos depois, a CreamCherry atende mais de 12.000 clientes com +80 sabores exclusivos — mas a essência continua a mesma: cada pote sai da nossa cozinha com o mesmo carinho do primeiro dia.</p>
+            <h2>De uma sorveteria de bairro ao <em>conceito CreamCherry</em></h2>
+            <p>A história da CreamCherry começa em <strong>1990</strong>, quando uma pequena sorveteria artesanal abriu suas portas no coração de São Paulo. Ali, o aroma de sorvete fresco e o sorriso dos clientes já contavam uma história de afeto e qualidade.</p>
+            <p>Em <strong>2002</strong>, o Sr. <strong>Raimundo Ernane de Freitas</strong> deu o primeiro grande passo: adquiriu sua primeira produtora de sorvetes, apostando no potencial do negócio e na qualidade artesanal que só uma família apaixonada pode entregar. Seis anos depois, em <strong>2008</strong>, chegou a picoleteira — ampliando ainda mais o portfólio e consolidando a produção da família na região.</p>
+            <p>A virada definitiva veio em <strong>2020</strong>, quando os filhos <strong>Evanilson P. Freitas</strong> e <strong>Magualhercio P. Freitas</strong> assumiram o leme e criaram o conceito <strong>CreamCherry</strong>: identidade visual, padronização de receitas, qualidade de ponta a ponta. Em <strong>2026</strong>, o sonho se tornou empresa — com delivery, atendimento profissional e referência reconhecida na região.</p>
+            <p>Hoje, a CreamCherry é tocada pelos filhos e pela <strong>Gerente Financeira Marina P. Souza</strong>, mantendo vivo o legado do Sr. Raimundo: amor em cada colherada.</p>
           </div>
+
           <div class="reveal-right">
             <div class="timeline">
               <div class="tl-item">
-                <div class="tl-dot"><strong>2018</strong></div>
+                <div class="tl-dot"><strong>1990</strong></div>
                 <div class="tl-body">
                   <h4>O primeiro sorvete</h4>
-                  <p>Carlos e Ana abrem a primeira loja na Mooca, SP, com 8 sabores artesanais.</p>
+                  <p>Uma pequena sorveteria artesanal abre as portas em São Paulo, com receitas feitas à mão e muito amor.</p>
                 </div>
               </div>
               <div class="tl-item">
-                <div class="tl-dot"><strong>2019</strong></div>
+                <div class="tl-dot"><strong>2002</strong></div>
                 <div class="tl-body">
-                  <h4>Os gelattos chegam</h4>
-                  <p>Após uma viagem à Sicília, lançamos a linha de gelattos italianos autênticos.</p>
+                  <h4>Sr. Raimundo adquire a produtora</h4>
+                  <p>A família Freitas entra definitivamente no negócio com a compra da primeira produtora de sorvetes.</p>
                 </div>
               </div>
               <div class="tl-item">
-                <div class="tl-dot"><strong>2021</strong></div>
+                <div class="tl-dot"><strong>2008</strong></div>
                 <div class="tl-body">
-                  <h4>Linha Vegana</h4>
-                  <p>Respondendo aos pedidos dos clientes, criamos a linha 100% à base de plantas.</p>
+                  <h4>A picoleteira chega</h4>
+                  <p>Expansão do portfólio com a aquisição da picoleteira, ampliando a produção artesanal da família.</p>
                 </div>
               </div>
               <div class="tl-item">
-                <div class="tl-dot"><strong>2023</strong></div>
+                <div class="tl-dot"><strong>2020</strong></div>
                 <div class="tl-body">
-                  <h4>Prêmio Melhor Sorveteria SP</h4>
-                  <p>Reconhecidos pelo mercado como referência em sorvetes artesanais premium.</p>
+                  <h4>Nasce o conceito CreamCherry</h4>
+                  <p>Evanilson e Magualhercio criam a identidade da marca — padronização, design e qualidade premium.</p>
                 </div>
               </div>
               <div class="tl-item">
-                <div class="tl-dot"><strong>2024</strong></div>
+                <div class="tl-dot"><strong>2026</strong></div>
                 <div class="tl-body">
-                  <h4>+80 sabores e delivery</h4>
-                  <p>Expandimos para delivery em toda SP e lançamos nossa maior linha de sabores especiais.</p>
+                  <h4>CreamCherry — a empresa</h4>
+                  <p>Formalização da empresa, lançamento do delivery e consolidação como referência em sorvetes artesanais na região.</p>
                 </div>
               </div>
             </div>
@@ -310,37 +309,44 @@
       </div>
     </section>
 
-    <!-- FUNDADORES -->
-    <section class="founders-section">
+    <!-- EQUIPE -->
+    <section class="team-section" id="equipe">
       <div class="container">
         <div class="section-header reveal">
-          <span class="eyebrow">As pessoas por trás da marca</span>
-          <h2 class="section-title">Quem faz a <em>CreamCherry</em></h2>
+          <span class="eyebrow">Nossa Equipe</span>
+          <h2 class="section-title">As pessoas por trás da <em>CreamCherry</em></h2>
+          <p class="section-desc">Uma família unida pela paixão de criar as melhores sobremesas artesanais de São Paulo.</p>
         </div>
-        <div class="founders-grid">
-          <div class="founder-card reveal reveal-delay-1">
-            <div class="founder-avatar" style="background:var(--red)">C</div>
-            <h4>Carlos Ferreira</h4>
-            <div class="role">Co-fundador & Sorveteiro Chefe</div>
-            <p>Apaixonado por gastronomia desde criança, Carlos estudou confeitaria em São Paulo e aprimorou técnicas de gelatto na Itália. É responsável por todas as receitas da casa.</p>
+        <div class="team-grid">
+          <div class="team-card reveal reveal-delay-1">
+            <div class="team-avatar" style="background:#8B0010">R</div>
+            <h4>Sr. Raimundo Ernane de Freitas</h4>
+            <span class="role">Fundador & Pioneiro</span>
+            <p>A força e a visão por trás de tudo. Em 2002, apostou no poder do sorvete artesanal e plantou a semente do que hoje é a CreamCherry. Seu legado vive em cada produto que fabricamos.</p>
           </div>
-          <div class="founder-card reveal reveal-delay-2">
-            <div class="founder-avatar" style="background:var(--gray-800)">A</div>
-            <h4>Ana Ferreira</h4>
-            <div class="role">Co-fundadora & Diretora de Operações</div>
-            <p>Com background em administração e um paladar apuradíssimo, Ana garante que cada copo entregue ao cliente tenha a mesma qualidade de quando saiu da cozinha.</p>
+          <div class="team-card reveal reveal-delay-2">
+            <div class="team-avatar" style="background:var(--red)">E</div>
+            <h4>Evanilson P. Freitas</h4>
+            <span class="role">Co-fundador & Diretor</span>
+            <p>Idealizador do conceito CreamCherry. Responsável pela identidade da marca, expansão do negócio e pela visão estratégica que transformou a produção familiar em uma empresa sólida.</p>
           </div>
-          <div class="founder-card reveal reveal-delay-3">
-            <div class="founder-avatar" style="background:#2D8A4E">R</div>
-            <h4>Rafael Lima</h4>
-            <div class="role">Chef de Inovação</div>
-            <p>Entrou na equipe em 2020 trazendo as linhas veganas e os sabores especiais. Rafael pesquisa tendências globais e transforma ideias em sobremesas inesquecíveis.</p>
+          <div class="team-card reveal reveal-delay-3">
+            <div class="team-avatar" style="background:var(--gray-700)">M</div>
+            <h4>Magualhercio P. Freitas</h4>
+            <span class="role">Co-fundador & Produção</span>
+            <p>O guardião das receitas e da qualidade. Responsável pela produção artesanal e pelo padrão de excelência que faz a CreamCherry ser referência na região.</p>
+          </div>
+          <div class="team-card reveal reveal-delay-4" style="grid-column: 1/-1; max-width:380px; margin:0 auto;">
+            <div class="team-avatar" style="background:#C0396B">M</div>
+            <h4>Marina P. Souza</h4>
+            <span class="role">Gerente Financeira</span>
+            <p>A mente financeira da CreamCherry. Marina garante a saúde do negócio, gestão de recursos e o crescimento sustentável da empresa, mantendo a operação eficiente e organizada.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MISSÃO, VISÃO E VALORES -->
+    <!-- MISSÃO, VISÃO, VALORES -->
     <section class="values-section" id="missao">
       <div class="container">
         <div class="section-header reveal">
@@ -351,50 +357,97 @@
           <div class="value-card reveal reveal-delay-1">
             <div class="value-icon"><i class="fa-solid fa-bullseye"></i></div>
             <h4>Missão</h4>
-            <p>Criar sobremesas artesanais de alta qualidade que transformem momentos simples em memórias afetivas — com sabor, cuidado e autenticidade em cada colherada.</p>
+            <p>Produzir sorvetes e gelattos artesanais de alta qualidade, com ingredientes selecionados e processos padronizados, levando sabor, alegria e qualidade para cada cliente.</p>
           </div>
           <div class="value-card reveal reveal-delay-2">
             <div class="value-icon"><i class="fa-solid fa-eye"></i></div>
             <h4>Visão</h4>
-            <p>Ser a sorveteria artesanal mais querida de São Paulo, reconhecida pela excelência dos ingredientes, inovação constante nos sabores e experiência incomparável ao cliente.</p>
+            <p>Ser a sorveteria artesanal mais reconhecida de São Paulo, expandindo nossa presença e mantendo o padrão de excelência que nos tornou referência na região.</p>
           </div>
           <div class="value-card reveal reveal-delay-3">
             <div class="value-icon"><i class="fa-solid fa-heart"></i></div>
             <h4>Valores</h4>
-            <p>Paixão pelo que fazemos. Honestidade nos ingredientes. Respeito às pessoas e ao meio ambiente. Inovação com tradição. E um sorriso em cada entrega.</p>
+            <p>Família, tradição e qualidade. Inovação com respeito às origens. Compromisso com o cliente e com a comunidade. Amor em cada etapa da produção.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SUSTENTABILIDADE — foco em embalagem -->
+    <!-- ENDEREÇO -->
+    <section class="address-section" id="endereco">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Onde estamos</span>
+          <h2 class="section-title">Venha nos <em>visitar</em></h2>
+        </div>
+        <div class="address-card reveal">
+          <div class="address-info">
+            <h3>CreamCherry Sobremesas</h3>
+            <div class="address-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Rua Abel Maciano de Oliveira, 85<br>Parque Novo Mundo — São Paulo, SP<br>CEP: 02175-030</span>
+            </div>
+            <div class="address-item">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>(11) 98958-2586</span>
+            </div>
+            <div class="address-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>comercial@creamcherry.com.br</span>
+            </div>
+            <div class="address-item">
+              <i class="fa-solid fa-clock"></i>
+              <span>Segunda a Domingo: 12h às 22h</span>
+            </div>
+            <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+              <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Quero%20saber%20mais." target="_blank" class="btn btn--red">
+                <i class="fa-brands fa-whatsapp"></i> Falar pelo WhatsApp
+              </a>
+              <a href="https://maps.google.com/?q=Rua+Abel+Maciano+de+Oliveira+85+Parque+Novo+Mundo+São+Paulo+SP" target="_blank" class="btn btn--outline">
+                <i class="fa-solid fa-map"></i> Ver no Maps
+              </a>
+            </div>
+          </div>
+          <div class="address-map">
+            <iframe
+              src="https://maps.google.com/maps?q=Rua+Abel+Maciano+de+Oliveira,+85,+Parque+Novo+Mundo,+São+Paulo,+SP,+02175-030&output=embed&z=15"
+              allowfullscreen loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Localização CreamCherry">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUSTENTABILIDADE -->
     <section class="suste-section" id="sustentabilidade">
       <div class="container">
         <div class="section-header reveal">
           <span class="eyebrow">Compromisso Ambiental</span>
           <h2 class="section-title">Embalagens que <em>respeitam o planeta</em></h2>
-          <p class="section-desc">Nossa responsabilidade com o meio ambiente começa na embalagem. Cada pote, saco e copo que entregamos foi escolhido pensando no impacto ambiental.</p>
+          <p class="section-desc">Nossa responsabilidade com o meio ambiente começa na embalagem. Cada pote e saco de entrega foi escolhido pensando no impacto ambiental.</p>
         </div>
         <div class="suste-cards">
           <div class="suste-card reveal reveal-delay-1">
             <div class="suste-card__icon"><i class="fa-solid fa-recycle"></i></div>
             <h4>Embalagens Recicláveis</h4>
-            <p>Todos os nossos potes e tampas são fabricados com plástico reciclável. Estamos em transição para embalagens 100% biodegradáveis até 2026.</p>
+            <p>Nossos potes e tampas são fabricados com material reciclável, com meta de transição para 100% biodegradável.</p>
           </div>
           <div class="suste-card reveal reveal-delay-2">
             <div class="suste-card__icon"><i class="fa-solid fa-leaf"></i></div>
             <h4>Sacolas Biodegradáveis</h4>
-            <p>As sacolas de entrega são feitas de amido de milho e se decompõem em até 180 dias em aterro. Nenhum plástico convencional nas nossas entregas.</p>
+            <p>As sacolas de entrega se decompõem em até 180 dias. Nenhum plástico convencional nas nossas entregas.</p>
           </div>
           <div class="suste-card reveal reveal-delay-3">
             <div class="suste-card__icon"><i class="fa-solid fa-box-open"></i></div>
-            <h4>Caixas de Papelão Certificado</h4>
-            <p>Todas as caixas de transporte e embalagens presenteáveis são feitas de papelão certificado FSC, de origem florestal responsável.</p>
+            <h4>Papelão Certificado FSC</h4>
+            <p>Caixas e embalagens presenteáveis feitas de papelão certificado, de origem florestal responsável.</p>
           </div>
         </div>
         <p style="font-size:.84rem;color:var(--gray-500);margin-top:2rem;text-align:center;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.7">
           <i class="fa-solid fa-circle-info" style="color:var(--gray-400);margin-right:.4rem"></i>
-          Utilizamos ingredientes naturais em nossas massas, além de condimentos e complementos selecionados de fornecedores parceiros. Nossa produção segue boas práticas de fabricação (BPF) com foco em qualidade e segurança alimentar.
+          Utilizamos ingredientes naturais em nossas massas, além de condimentos e complementos selecionados de fornecedores parceiros de confiança. Nossa produção segue boas práticas de fabricação (BPF) com foco em qualidade e segurança alimentar.
         </p>
       </div>
     </section>
@@ -404,16 +457,14 @@
   <footer class="footer">
     <div class="footer__top">
       <div class="footer__brand">
-        <div class="footer__logo">
-          <img src="../images/logos/logo-branco-transparent.png" alt="CreamCherry Sobremesas" style="height:46px;width:auto;">
-        </div>
-        <p>Sorvetes e gelattos artesanais feitos com ingredientes selecionados e muito amor. Desde 2018 adoçando os momentos especiais de milhares de famílias brasileiras.</p>
+        <div class="footer__logo"><img src="../images/logos/logo-branco-transparent.png" alt="CreamCherry" style="height:46px;width:auto;"></div>
+        <p>Sorvetes e gelattos artesanais, desde 1990. Uma família, uma paixão — adoçando os momentos especiais de São Paulo.</p>
         <div class="footer__social">
-          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a href="#" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
         </div>
       </div>
       <div class="footer__col">
@@ -421,9 +472,9 @@
         <ul>
           <li><a href="sobre.html">Sobre nós</a></li>
           <li><a href="sobre.html#historia">Nossa história</a></li>
+          <li><a href="sobre.html#equipe">Nossa equipe</a></li>
           <li><a href="sobre.html#sustentabilidade">Sustentabilidade</a></li>
-          <li><a href="#">Trabalhe conosco</a></li>
-          <li><a href="#">Imprensa</a></li>
+          <li><a href="sobre.html#endereco">Onde estamos</a></li>
         </ul>
       </div>
       <div class="footer__col">
@@ -442,7 +493,6 @@
           <li><a href="suporte.html">Central de Ajuda</a></li>
           <li><a href="suporte.html">Fale Conosco</a></li>
           <li><a href="#">Política de Entrega</a></li>
-          <li><a href="#">Trocas e Devoluções</a></li>
           <li><a href="atacado.html">Encomendas Atacado</a></li>
         </ul>
       </div>
@@ -451,12 +501,11 @@
         <ul>
           <li><a href="franquias.html">Franquias CreamCherry</a></li>
           <li><a href="#">Fornecedores</a></li>
-          <li><a href="#">Programa de Afiliados</a></li>
         </ul>
         <div class="footer__apps">
           <h4>Peça pelo app</h4>
-          <a href="#" class="app-badge"><i class="fa-brands fa-apple"></i> App Store</a>
-          <a href="#" class="app-badge"><i class="fa-brands fa-google-play"></i> Google Play</a>
+          <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" class="app-badge"><i class="fa-solid fa-motorcycle"></i> 99Food</a>
+          <a href="https://wa.me/5511989582586" target="_blank" class="app-badge"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
         </div>
       </div>
     </div>
@@ -464,94 +513,36 @@
       <div class="footer__payment">
         <span>Pagamento:</span>
         <div class="payment-icons">
-          <!-- Visa -->
-          <div class="payment-badge" title="Visa">
-            <svg viewBox="0 0 48 16" xmlns="http://www.w3.org/2000/svg">
-              <text x="0" y="13" font-family="Arial" font-weight="900" font-size="14" fill="#1A1F71">VISA</text>
-            </svg>
-          </div>
-          <!-- Mastercard -->
-          <div class="payment-badge" title="Mastercard" style="gap:3px;display:flex;align-items:center;padding:3px 5px">
-            <svg viewBox="0 0 38 24" width="38" height="24" xmlns="http://www.w3.org/2000/svg">
-              <rect width="38" height="24" rx="4" fill="white"/>
-              <circle cx="14" cy="12" r="8" fill="#EB001B"/>
-              <circle cx="24" cy="12" r="8" fill="#F79E1B"/>
-              <path d="M19 6.27a8 8 0 0 1 0 11.46A8 8 0 0 1 19 6.27z" fill="#FF5F00"/>
-            </svg>
-          </div>
-          <!-- Pix -->
-          <div class="payment-badge payment-badge--pix" title="Pix">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <path d="M32 8l10.6 10.6-10.6 10.6L21.4 18.6z" fill="white"/>
-              <path d="M32 34.8l10.6 10.6L32 56l-10.6-10.6z" fill="white"/>
-              <path d="M8 32l10.6-10.6 10.6 10.6-10.6 10.6z" fill="white"/>
-              <path d="M34.8 32l10.6-10.6L56 32l-10.6 10.6z" fill="white"/>
-            </svg>
-          </div>
-          <!-- Elo -->
-          <div class="payment-badge" title="Elo" style="background:#FFD000">
-            <svg viewBox="0 0 48 20" xmlns="http://www.w3.org/2000/svg">
-              <text x="2" y="15" font-family="Arial" font-weight="900" font-size="13" fill="#00A0E0">elo</text>
-            </svg>
-          </div>
-          <!-- AmEx -->
-          <div class="payment-badge" title="American Express" style="background:#007BC1">
-            <svg viewBox="0 0 52 16" xmlns="http://www.w3.org/2000/svg">
-              <text x="0" y="13" font-family="Arial" font-weight="700" font-size="9.5" fill="white" letter-spacing="0.5">AMEX</text>
-            </svg>
-          </div>
-          <!-- VR -->
-          <div class="payment-badge payment-badge--vr" title="VR Benefícios">
-            <svg viewBox="0 0 36 20" xmlns="http://www.w3.org/2000/svg">
-              <rect width="36" height="20" rx="3" fill="#EF7D00"/>
-              <text x="4" y="14" font-family="Arial" font-weight="900" font-size="11" fill="white">VR</text>
-            </svg>
-          </div>
-          <!-- Alelo -->
-          <div class="payment-badge payment-badge--alelo" title="Alelo">
-            <svg viewBox="0 0 48 20" xmlns="http://www.w3.org/2000/svg">
-              <rect width="48" height="20" rx="3" fill="#EC1C24"/>
-              <text x="4" y="14" font-family="Arial" font-weight="700" font-size="10" fill="white">alelo</text>
-            </svg>
-          </div>
-          <!-- Dinheiro -->
-          <div class="payment-badge payment-badge--dinheiro" title="Dinheiro">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1" y="5" width="22" height="14" rx="2" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
-              <circle cx="12" cy="12" r="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
-              <line x1="1" y1="9" x2="5" y2="9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
-              <line x1="19" y1="9" x2="23" y2="9" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
-              <line x1="1" y1="15" x2="5" y2="15" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
-              <line x1="19" y1="15" x2="23" y2="15" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
-            </svg>
-          </div>
+          <div class="payment-badge" title="Visa"><svg viewBox="0 0 48 16"><text x="0" y="13" font-family="Arial" font-weight="900" font-size="14" fill="#1A1F71">VISA</text></svg></div>
+          <div class="payment-badge" title="Mastercard" style="padding:3px 5px"><svg viewBox="0 0 38 24" width="38" height="24"><rect width="38" height="24" rx="4" fill="white"/><circle cx="14" cy="12" r="8" fill="#EB001B"/><circle cx="24" cy="12" r="8" fill="#F79E1B"/><path d="M19 6.27a8 8 0 0 1 0 11.46A8 8 0 0 1 19 6.27z" fill="#FF5F00"/></svg></div>
+          <div class="payment-badge payment-badge--pix" title="Pix"><svg viewBox="0 0 64 64"><path d="M32 8l10.6 10.6-10.6 10.6L21.4 18.6z" fill="white"/><path d="M32 34.8l10.6 10.6L32 56l-10.6-10.6z" fill="white"/><path d="M8 32l10.6-10.6 10.6 10.6-10.6 10.6z" fill="white"/><path d="M34.8 32l10.6-10.6L56 32l-10.6 10.6z" fill="white"/></svg></div>
+          <div class="payment-badge" title="Elo" style="background:#FFD000"><svg viewBox="0 0 48 20"><text x="2" y="15" font-family="Arial" font-weight="900" font-size="13" fill="#00A0E0">elo</text></svg></div>
+          <div class="payment-badge" title="AmEx" style="background:#007BC1"><svg viewBox="0 0 52 16"><text x="0" y="13" font-family="Arial" font-weight="700" font-size="9.5" fill="white" letter-spacing="0.5">AMEX</text></svg></div>
         </div>
       </div>
       <div class="footer__delivery-brands">
         <span>Peça via:</span>
         <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" class="del-brand" style="text-decoration:none">99Food</a>
-        <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" class="del-brand" style="text-decoration:none">WhatsApp</a>
+        <a href="https://wa.me/5511989582586" target="_blank" class="del-brand" style="text-decoration:none">WhatsApp</a>
       </div>
     </div>
-
     <div class="footer__bottom">
-      <p>© 2025 CreamCherry Sobremesas LTDA. CNPJ: 00.000.000/0001-00. Todos os direitos reservados.</p>
-      <div class="footer__legal">
-        <a href="#">Termos de Uso</a><a href="#">Privacidade</a><a href="#">Cookies</a>
-      </div>
+      <p>© 2026 CreamCherry Sobremesas LTDA. Todos os direitos reservados.</p>
+      <div class="footer__legal"><a href="#">Termos de Uso</a><a href="#">Privacidade</a></div>
     </div>
   </footer>
 
-  <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." class="whatsapp-float" target="_blank" rel="noopener">
+  <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." class="whatsapp-float" target="_blank">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
   <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
-  <script src="../js/config.js"></script>
-  <script src="../js/main.js"></script>
-  <script src="../js/forms.js"></script>
-  <!-- VLibras Acessibilidade -->
+
+  <!-- VLibras -->
   <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>new window.VLibras.Widget("https://vlibras.gov.br/app");</script>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/main.js"></script>
 </body>
 </html>

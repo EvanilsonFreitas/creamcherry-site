@@ -1,3 +1,15 @@
+
+/* ── Fixed site header wrapper (letreiro + nav juntos) ── */
+.site-header-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
 /* ========================================
    CREAM CHERRY — Header
    ======================================== */
@@ -31,11 +43,9 @@
    HEADER — transparent at top, white on scroll
    ══════════════════════════════════════════ */
 .header {
-  position: fixed;
-  top: 36px;  /* below announcement bar */
-  left: 0;
-  right: 0;
-  z-index: 100;
+  position: relative;
+  z-index: 1;
+  /* positioning handled by .site-header-wrap */
 
   /* TOP STATE: fully transparent — shows the red hero through */
   background: transparent;
@@ -63,9 +73,9 @@
   z-index: -1;
 }
 
-/* SCROLLED STATE: white frosted glass */
+/* SCROLLED STATE: white frosted glass, moves to top:0 */
 .header.scrolled {
-  background: transparent; /* let ::before handle the color */
+  background: transparent;
   border-bottom: 1px solid var(--gray-100);
   box-shadow: 0 2px 20px rgba(0,0,0,0.07);
 }

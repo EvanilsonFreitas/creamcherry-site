@@ -1095,8 +1095,9 @@
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  background: var(--gray-800);
-  border: 1.5px solid var(--gray-100);
+  background: var(--white);
+  border: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
               box-shadow  0.35s cubic-bezier(0.22,1,0.36,1);
   cursor: pointer;
@@ -1104,7 +1105,7 @@
 
 .prod-real-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 24px 48px rgba(0,0,0,0.16);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.14);
 }
 
 /* Large first card */
@@ -1205,4 +1206,24 @@
   .prod-real-card--large .prod-real-img,
   .prod-real-card--large .prod-real-body { width: 100%; }
   .prod-real-card--large .prod-real-img { min-height: 200px; }
+}
+
+/* ── Depoimento tags (itens da avaliação) ── */
+.depoimento-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+.depoimento-tags span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--red-pale);
+  color: var(--red);
+  padding: 0.22rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+.depoimento-tags--light span {
+  background: rgba(255,255,255,0.18);
+  color: white;
 }
