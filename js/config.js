@@ -12,7 +12,7 @@
    
    ================================================ */
 
-const API_URL = 'https://SEU-SERVICO.onrender.com';
+const API_URL = 'https://creamcherry-api.onrender.com';
 
 /* ── Não altere abaixo desta linha ── */
 window.CREAM_API = API_URL;
