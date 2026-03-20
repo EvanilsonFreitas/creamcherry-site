@@ -398,38 +398,6 @@
   <script src="../js/config.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/forms.js"></script>
-  <script>
-    function submitForm() {
-      const name    = document.getElementById('formName').value.trim();
-      const email   = document.getElementById('formEmail').value.trim();
-      const subject = document.getElementById('formSubject').value;
-      const message = document.getElementById('formMessage').value.trim();
-
-      if (!name || !email || !subject || !message) {
-        showToast('⚠️ Preencha todos os campos!');
-        return;
-      }
-
-      // POST to Flask backend
-      fetch(`${window.CREAM_API}/api/contato`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, subject, message })
-      })
-      .then(r => r.json())
-      .then(() => {
-        showToast('✅ Mensagem enviada! Responderemos em breve.');
-        document.getElementById('formName').value    = '';
-        document.getElementById('formEmail').value   = '';
-        document.getElementById('formSubject').value = '';
-        document.getElementById('formMessage').value = '';
-      })
-      .catch(() => {
-        // Fallback without backend
-        showToast('✅ Mensagem enviada! Responderemos em breve.');
-      });
-    }
-  </script>
   <!-- VLibras Acessibilidade -->
   <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>

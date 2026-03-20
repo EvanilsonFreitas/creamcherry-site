@@ -1508,12 +1508,8 @@
       obs:         document.getElementById('obs').value,
     };
 
-    const enviado = await enviarAtacado(payload);
-    if (!enviado) { showToast('Erro ao enviar. Tente pelo WhatsApp.'); return; }
-
-    document.getElementById('formContent').style.display = 'none';
-    document.getElementById('successMsg').style.display  = 'block';
-    document.querySelector('.atacado-form-wrap').scrollIntoView({ behavior:'smooth', block:'start' });
+    // enviarAtacado handles loading, success modal and error — all in forms.js
+    await enviarAtacado(payload);
   }
   </script>
   <!-- VLibras Acessibilidade -->
