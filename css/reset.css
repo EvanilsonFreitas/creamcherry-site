@@ -134,3 +134,7 @@ footer {
   max-width: 100vw;
   overflow-x: hidden;
 }
+
+/* ── Fixed header offset ── */
+/* Hero and page-hero handle their own padding-top.
+   Other sections are fine since they come after the hero. */

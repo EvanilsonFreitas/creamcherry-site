@@ -5,9 +5,9 @@
 .hero {
   position: relative;
   min-height: 100vh;
-  /* Pull behind sticky transparent header */
-  margin-top: calc(-1 * var(--header-h));
-  padding-top: calc(var(--header-h));
+  /* Pull behind fixed header + announcement bar */
+  margin-top: 0;
+  padding-top: calc(var(--header-h) + 36px);
   background: var(--red);
   overflow: hidden;   /* contains blobs, rings, float-tags */
   display: flex;

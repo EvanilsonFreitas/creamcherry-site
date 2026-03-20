@@ -31,8 +31,10 @@
    HEADER — transparent at top, white on scroll
    ══════════════════════════════════════════ */
 .header {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 36px;  /* below announcement bar */
+  left: 0;
+  right: 0;
   z-index: 100;
 
   /* TOP STATE: fully transparent — shows the red hero through */
