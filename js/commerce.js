@@ -6,19 +6,21 @@
     return element;
   };
   document.querySelectorAll('[data-delivery]').forEach(container => {
-    container.append(text('h3', 'Mais formas de pedir'));
-    const options = document.createElement('div');
-    options.className = 'delivery-options__buttons';
+    const inline = container.dataset.delivery === 'inline';
+    if (!inline) container.append(text('h3', 'Mais formas de pedir'));
+    const options = inline ? container : document.createElement('div');
+    if (!inline) options.className = 'delivery-options__buttons';
     for (const [id,label] of [['ifood','Pedir pelo iFood'],['keeta','Pedir pela Keeta']]) {
       const url = window.CREAM_DELIVERY?.[id];
       let valid = false;
       try { valid = new URL(url).protocol === 'https:'; } catch { /* Canal sem URL oficial. */ }
-      const button = text(valid ? 'a' : 'button', label, `delivery-platform delivery-platform--${id}`);
+      const button = text(valid ? 'a' : 'button', inline ? (id === 'ifood' ? 'iFood' : 'Keeta') : label, `delivery-platform delivery-platform--${id}`);
+      button.setAttribute('aria-label', label);
       if (valid) { button.href=url; button.target='_blank'; button.rel='noopener noreferrer'; }
       else {button.type='button';button.disabled=true;button.append(text('small','Canal ainda não habilitado'));}
       options.append(button);
     }
-    container.append(options);
+    if (!inline) container.append(options);
   });
   const track = document.getElementById('reviewsTrack');
   if (!track || typeof REVIEWS === 'undefined') return;

@@ -38,6 +38,14 @@
 .delivery-platform--keeta {background:#ffe34d;color:#202020}
 .delivery-platform:disabled {background:var(--gray-50);color:var(--gray-600);border-color:var(--gray-200);cursor:not-allowed}
 .delivery-platform small {font-size:.7rem;font-weight:400}
+.delivery-apps--inline {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem;max-width:620px}
+.delivery-apps--inline .delivery-app-btn,.delivery-apps--inline .delivery-platform {width:100%;min-height:52px;padding:.75rem 1rem;border:1px solid transparent;border-radius:var(--radius-full);font-size:.9rem;white-space:nowrap;justify-content:center;transition:transform .2s,box-shadow .2s}
+.delivery-apps--inline .delivery-app-btn--99 {background:#ffcc00;color:#202020}
+.delivery-apps--inline .delivery-platform--keeta {background:#fff06a;color:#202020}
+.delivery-apps--inline .delivery-platform--ifood {background:#ea1d2c;color:white;border-color:#ffffff75}
+.delivery-apps--inline a:hover {transform:translateY(-2px);box-shadow:0 4px 12px #00000018}
+.delivery-apps--inline a:focus-visible {outline-color:white}
+@media(max-width:600px) {.delivery-apps--inline {grid-template-columns:repeat(2,minmax(0,1fr));max-width:400px}}
 .reviews-controls {display:flex;justify-content:flex-end;gap:.6rem;margin-bottom:1rem}
 .reviews-controls button {min-width:48px;min-height:44px}
 .reviews-controls button:disabled {opacity:.4;cursor:default}
