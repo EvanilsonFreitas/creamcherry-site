@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suporte — Cream Cherry</title>
+  <title>Suporte | Cream Cherry</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -92,6 +92,8 @@
   <link rel="icon"             type="image/png" sizes="16x16"  href="../images/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180"                 href="../images/favicon-180.png">
   <meta name="theme-color" content="#C8102E">
+<link rel="stylesheet" href="../css/commerce.css">
+<link rel="stylesheet" href="../css/editorial.css">
 </head>
 <body>
 
@@ -117,7 +119,7 @@
         <a href="suporte.html"     class="nav__link active">Suporte</a>
       </nav>
       <div class="header__actions">
-        <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" rel="noopener" class="btn btn--red"><i class="fa-brands fa-whatsapp"></i> Pedir Agora</a>
+        <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" class="btn btn--red" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Pedir Agora</a>
       </div>
       <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
     </div>
@@ -137,7 +139,7 @@
         <a href="franquias.html"><i class="fa-solid fa-handshake"></i> Franquias</a>
         <a href="suporte.html"><i class="fa-solid fa-headset"></i> Suporte</a>
       </nav>
-      <a href="delivery.html" class="btn btn--red btn--lg" style="margin-top:2rem;width:100%;justify-content:center;">Pedir Agora</a>
+      <a href="../index.html#delivery" class="btn btn--red btn--lg" style="margin-top:2rem;width:100%;justify-content:center;">Pedir Agora</a>
       <div class="mobile-menu__social">
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
         <a href="#"><i class="fa-brands fa-tiktok"></i></a>
@@ -155,6 +157,8 @@
         <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/></svg>
       </div>
     </section>
+    <div class="container editorial-strip" aria-label="Inspirações de sorvetes e açaí"><figure class="editorial-photo reveal"><img src="../images/editorial/acai-com-frutas.jpg" alt="Tigela de açaí com frutas e acompanhamentos" width="1000" height="1333" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa</figcaption></figure><figure class="editorial-photo reveal"><img src="../images/editorial/sorvetes-e-casquinhas.jpg" alt="Sorvetes de diferentes cores ao lado de casquinhas e colheres" width="1000" height="1500" loading="lazy" decoding="async"><figcaption>Imagem ilustrativa</figcaption></figure></div>
+
 
     <section class="suporte-page">
       <div class="container">
@@ -166,7 +170,7 @@
 
             <div class="faq-item">
               <button class="faq-question">Como funciona o delivery? <i class="fa-solid fa-plus faq-icon"></i></button>
-              <div class="faq-answer"><p>Entrega via 99Food e WhatsApp. Prazo médio de 30–40 min com embalagem térmica especial.</p></div>
+              <div class="faq-answer"><p>Entrega via iFood, Keeta, 99Food e WhatsApp. Prazo médio de 30–40 min com embalagem térmica especial.</p></div>
             </div>
             <div class="faq-item">
               <button class="faq-question">Vocês têm opções sem lactose e veganas? <i class="fa-solid fa-plus faq-icon"></i></button>
@@ -200,7 +204,7 @@
               <h3>Canais de atendimento</h3>
               <p>Resposta garantida em até 5 minutos no WhatsApp.</p>
               <div class="contact-options">
-                <a href="https://wa.me/5511989582586" target="_blank" class="contact-option">
+                <a href="https://wa.me/5511989582586" target="_blank" class="contact-option" rel="noopener noreferrer">
                   <i class="fa-brands fa-whatsapp"></i>
                   <div><strong>WhatsApp</strong><span>Resposta em até 5 min</span></div>
                 </a>
@@ -208,7 +212,7 @@
                   <i class="fa-solid fa-envelope"></i>
                   <div><strong>E-mail</strong><span>Comercial@creamcherry.com.br</span></div>
                 </a>
-                <a href="https://instagram.com/creamcherry" target="_blank" class="contact-option">
+                <a href="https://instagram.com/creamcherry" target="_blank" class="contact-option" rel="noopener noreferrer">
                   <i class="fa-brands fa-instagram"></i>
                   <div><strong>Instagram</strong><span>@creamcherry.oficial</span></div>
                 </a>
@@ -251,7 +255,7 @@
         </div>
       </div>
     </section>
-  </main>
+  <div class="container"><div class="delivery-options support-delivery" data-delivery></div></div></main>
 
     <footer class="footer">
     <div class="footer__top">
@@ -379,8 +383,8 @@
       </div>
       <div class="footer__delivery-brands">
         <span>Peça via:</span>
-        <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" class="del-brand" style="text-decoration:none">99Food</a>
-        <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" class="del-brand" style="text-decoration:none">WhatsApp</a>
+        <a href="https://oia.99app.com/dlp9/VkoEdY" target="_blank" class="del-brand" style="text-decoration:none" rel="noopener noreferrer">99Food</a>
+        <a href="https://wa.me/5511989582586?text=Ol%C3%A1%2C%20CreamCherry!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" class="del-brand" style="text-decoration:none" rel="noopener noreferrer">WhatsApp</a>
       </div>
     </div>
 
@@ -392,12 +396,13 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/5511989582586" class="whatsapp-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+  <a href="https://wa.me/5511989582586" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
   <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
 
   <script src="../js/config.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/forms.js"></script>
+  <script src="../js/commerce.js"></script>
   <!-- VLibras Acessibilidade -->
   <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>

@@ -84,7 +84,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const target = document.querySelector(hash);
     if (!target) return;
     e.preventDefault();
-    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+    window.scrollTo({ top: target.offsetTop - 80, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   });
 });
 
